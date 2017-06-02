@@ -47,9 +47,13 @@ public class UserLogin extends HttpServlet {
 		try {
 			boolean result = loginDAO.validate(phoneNumber, password);
 			if (result) {
-				RequestDispatcher rd = request.getRequestDispatcher("WelcomePage.html");
+				System.out.println("True!!!");
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("WelcomePage.html");
+				requestDispatcher.forward(request,response);
+			
 			} else {
-				RequestDispatcher rd = request.getRequestDispatcher("WelcomePage.html");
+				System.out.println("False!!");
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("WelcomePage.html");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

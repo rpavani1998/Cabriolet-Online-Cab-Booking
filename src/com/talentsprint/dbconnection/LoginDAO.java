@@ -10,20 +10,23 @@ public class LoginDAO {
 	Connection con = connectionFactory.getConnection();
 	
 	public boolean validate(String phoneNum, String password) throws SQLException {
-		boolean flag = false;
 		String phoneNumber = null;
 		String password1 = null;
+		System.out.println(phoneNum);
 		Statement statement = con.createStatement();
-		String query = "select * from UserDetails where phoneNumber ='"+ phoneNumber +"'";
+		String query = "select password from UserDetails where phoneNumber ='"+ phoneNum +"'";
 		ResultSet resultSet = statement.executeQuery(query);
-		while (resultSet.next()) {
-			phoneNumber = resultSet.getString(2);
-			password1 = resultSet.getString(3);
-			if ((phoneNumber.equals(phoneNum)) && (password1.equals(password1))) {
-				System.out.println("Login SuccessFull!!");
-				flag = true;
-			}
+		
+		if (resultSet.next()) {
+			password1 = resultSet.getString(1);
+		
+		System.out.println(password+ " " +password1);
+		if ((password.equals(password1))) {
+			System.out.println("Login SuccessFull!!");
+			return  true;
 		}
-		return flag; 
+		}
+		
+		return false; 
 	}
 }
