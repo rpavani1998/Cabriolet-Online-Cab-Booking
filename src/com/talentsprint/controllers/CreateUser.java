@@ -53,7 +53,7 @@ public class CreateUser extends HttpServlet {
 		
 		UserDAOImplementation dao = new UserDAOImplementation();
 		result=dao.createUser(user);
-		RequestDispatcher rd=request.getRequestDispatcher("Welcome.html");
+		RequestDispatcher rd=request.getRequestDispatcher("WelcomePage.html");
 		rd.forward(request, response);
 	}
 

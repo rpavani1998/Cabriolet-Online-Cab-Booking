@@ -7,7 +7,7 @@ pageEncoding="UTF-8"%>
 <title>Cabriolet Registration</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="CSS/Register.css">
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
@@ -25,7 +25,7 @@ body,h1,h5 {font-family: "Raleway", sans-serif}
 body, html{height: 100%}
 
 .bgimg {
-    background-image: url('Images/backgroungcar.jpg');
+    background-image: url('CSS/Images/backgroundcar.jpg');
     min-height: 100%;
     background-position: center;
     background-size: cover;

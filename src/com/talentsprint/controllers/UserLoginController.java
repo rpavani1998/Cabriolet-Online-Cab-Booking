@@ -1,6 +1,7 @@
 package com.talentsprint.controllers;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -14,14 +15,14 @@ import com.talentsprint.dbconnection.LoginDAO;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/UserLogin")
-public class UserLogin extends HttpServlet {
+@WebServlet("/UserLoginController")
+public class UserLoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserLogin() {
+    public UserLoginController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,24 +40,24 @@ public class UserLogin extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String phoneNumber=request.getParameter("phoneNumber");
 		String password = request.getParameter("password");
+		PrintWriter out = response.getWriter();
 		
 		LoginDAO loginDAO = new LoginDAO();
 		try {
 			boolean result = loginDAO.validate(phoneNumber, password);
 			if (result) {
-				System.out.println("True!!!");
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("WelcomePage.html");
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("JSP/HomePage.jsp");
 				requestDispatcher.forward(request,response);
 			
 			} else {
-				System.out.println("False!!");
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("WelcomePage.html");
-			}
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('User or password incorrect');");
+				out.println("location='WelcomePage.html';");
+				out.println("</script>");
+				}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
