@@ -1,75 +1,104 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Place Autocomplete</title>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 <meta charset="utf-8">
-<script  type="text/javascript" src="JS/HomePage.js"></script> 
-<link rel="stylesheet" type="text/css" href="CSS/HomePage.css"> 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
-<title>HomePage</title>
+<link rel="stylesheet" type="text/css" href="CSS/HomePage.css">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="JS/HomePage.js"></script>
 </head>
+
 <body>
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
-    <div id="mySidenav" class="sidenav"></
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <p id="name">Rajula Pavani</p>
-  <p id="id">UCAB170008</p>
-  <p id="phoneNum">7207874257</a>
-  <p id ="emailID" >rpavani1998@gmail.com</p>
-  <p></p>
-  <p></p>
-  <a href="#">Booking History</a>
-  <a href="#">Payment</a>
-  <a href="#">Rate Your Ride</a>
-</div>
+		<br> <a href="#"><span class="glyphicon glyphicon-user"
+			style="font-size: 30px; color: white;"></span>&ensp; Your Account</a> <a></a>
+		<a href="#"><span class="glyphicon glyphicon-star-empty"
+			style="font-size: 30px; color: white;"></span>&ensp; Your Ride</a> <a></a>
+		<a href="#"><span class="glyphicon glyphicon-credit-card"
+			style="font-size: 30px; color: white;"></span>&ensp; Payment</a> <a></a>
+		<a href="display.jsp"><span class="glyphicon glyphicon-list"
+			style="font-size: 30px; color: white;"></span>&ensp; Rides History</a> <a></a>
+		<a href="#"><span class="glyphicon glyphicon-off"
+			style="font-size: 30px; color: white;"></span>&ensp; Log Out</a>
+	</div>
 
-    <div id="main">
-      <span style="font-size:40px;cursor:pointer" onclick="openNav()">&#9776;</span>
-    </div>
+	<div id="main">
+		<span style="font-size: 40px; cursor: pointer" onclick="openNav()">&#9776;</span>
+	</div>
 
-    <div id="title" style="cursor:pointer" onclick="#"><span class="glyphicon glyphicon-map-marker"></span>Cabriolet</div>
-   
-    <div id="map"></div>
+	<div id="title" style="cursor: pointer" onclick="#">
+		<span class="glyphicon glyphicon-map-marker"></span>Cabriolet
+	</div>
+	<hr>
+	<input id="origin-input" class="controls" type="text"
+		placeholder="Enter an origin location">
+	<input id="destination-input" class="controls" type="text"
+		placeholder="Enter a destination location">
 
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4jdDVSmvrlcnQ_J7pitAjd3BEryHEUuQ&callback=initMap">
-    </script>
+	<div id="mode-selector" class="controls">
+		<input type="radio" name="type" id="changemode-walking"> <label
+			for="changemode-walking">Walking</label> <input type="radio"
+			name="type" id="changemode-transit"> <label
+			for="changemode-transit">Transit</label> <input type="radio"
+			name="type" id="changemode-driving" checked="checked"> <label
+			for="changemode-driving">Driving</label>
+	</div>
 
-    <section id="searchBar">
-     <section class="modal-content">
-      <section class="modal-header" style="padding:35px 50px;">
-        <h4><span class="glyphicon glyphicon-lock"></span> Take a Ride</h4>
-      </section>
+	<div id="map"></div>
 
-      <section class="modal-body" style="padding:40px 50px;">
-        <form role="form">
-          <section class="form-group">
-            <label for="source"><span class="input-group-addon"><img src="CSS/Images/marker.png"><span class="hidden-xs text-upper-style">Source</span></label>
-            <input type="text" class="form-control" id="source" placeholder="Enter Source">
-          </section>
-          <br>
-          <section class="form-group">
-            <label for="destination"><span class="input-group-addon"><img src="CSS/Images/pointer.png"><span class="hidden-xs text-upper-style">Destination</span></label>
-            <input type="text" class="form-control" id="destination" placeholder="Enter Destination">
-          </section>
-
-        <br>
-         <br>  <button type="submit" class="btn btn-basic btn-block"><span class="glyphicon glyphicon-off"></span>Estimate Ride Cost</button>
-         <p></p>
-         
-          <button type="submit" class="btn btn-basic btn-block"><span class="glyphicon glyphicon-off"></span>Confirm Booking</button>
-
-        </form>
-      </section>
-
-</div>
-
-  </body>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaUnlvOLz0h3PlhKnbBCcph86jMWYUHf0&libraries=places&callback=initMap"
+		async defer></script>
+	<div class="d-flex flex-row-reverse">
+		<div class="heading">Take a Ride</div>
+		<div class="row">
+			<form>
+				<div class="col-md-offset-6">
+					<div>
+						<br>
+						<div>
+							&ensp;Source:
+							<div id="source"></div>
+						</div>
+						<div id="destination">&ensp;Destination:</div>
+						&ensp;
+						<div class="btn-group">
+							<button type="button"
+								class="btn btn-default btn-lg btn-block dropdown-toggle"
+								data-toggle="dropdown">
+								Car Type <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#"> Micro</a></li>
+								<li><a href="#"> Mini</a></li>
+								<li><a href="#"> Sedan</a></li>
+								<li><a href="#"> Prime</a></li>
+							</ul>
+						</div>
+						<br>
+						<br> &ensp;
+						<button type="button" class="btn btn-default submit">
+							Estimate Ride Cost</button>
+						&ensp;&ensp;
+						<button type="button" class="btn btn-default submit">
+							Confirm Your Ride</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
 </html>
-
-
-
-

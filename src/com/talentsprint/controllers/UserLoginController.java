@@ -18,50 +18,53 @@ import com.talentsprint.dbconnection.LoginDAO;
 @WebServlet("/UserLoginController")
 public class UserLoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UserLoginController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public UserLoginController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		doPost(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String phoneNumber=request.getParameter("phoneNumber");
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String phoneNumber = request.getParameter("phoneNumber");
 		String password = request.getParameter("password");
 		PrintWriter out = response.getWriter();
-		
+
 		LoginDAO loginDAO = new LoginDAO();
 		try {
 			boolean result = loginDAO.validate(phoneNumber, password);
 			if (result) {
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("JSP/HomePage.jsp");
-				requestDispatcher.forward(request,response);
-			
+				requestDispatcher.forward(request, response);
+
 			} else {
 				out.println("<script type=\"text/javascript\">");
 				out.println("alert('User or password incorrect');");
 				out.println("location='WelcomePage.html';");
 				out.println("</script>");
-				}
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 
-	}		
+	}
 
 }
