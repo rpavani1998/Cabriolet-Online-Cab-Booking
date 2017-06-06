@@ -12,19 +12,26 @@ public class RideDAO {
 	ConnectionFactory connectionFactory = new ConnectionFactory();
 	Connection con = connectionFactory.getConnection();
 
-	public int bookARide(RideBean rideBean) throws SQLException {
+	public static int bookARide(RideBean rideBean) throws SQLException {
 		int result = 0;
 		try {
 			Connection connection = ConnectionFactory.getConnection();
 			PreparedStatement query = connection.prepareStatement(
-					"insert into Ride(customerId,source,destination,status,amount) values(?,?,?,?,?)");
-			query.setString(1, rideBean.getCustomerId());
-			query.setString(2, rideBean.getSource());
-			query.setString(3, rideBean.getStatus());
-			query.setString(4, rideBean.getAmount());
+					"insert into Ride(driverId,customerId,source,destination,status,amount,bookingTime) values(?,?,?,?,?,?,NOW())");
+			
+			query.setString(2, rideBean.getCustomerId());
+			query.setString(3, rideBean.getSource());
+			query.setString(4, rideBean.getDestination());
+			query.setString(5, rideBean.getStatus());
+			query.setDouble(6, rideBean.getAmount());
 
+			PreparedStatement query1 = connection.prepareStatement("select * from Driver where status = 'yes' limit 1");
+			ResultSet resultSet = query1.executeQuery();
+			while(resultSet.next()){
+				query.setString(1, resultSet.getString(4));
+			}
+			
 			result = query.executeUpdate();
-
 			connection.close();
 		} catch (Exception e) {
 			e.printStackTrace();

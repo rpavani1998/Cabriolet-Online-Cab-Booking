@@ -12,7 +12,7 @@ body, html {
 }
 
 .bgimg {
-	background-image: url('Images/backgroundcar.jpg');
+	background-image: url('../CSS/Images/backgroundcar.jpg');
 	min-height: 100%;
 	background-position: center;
 	background-size: cover;

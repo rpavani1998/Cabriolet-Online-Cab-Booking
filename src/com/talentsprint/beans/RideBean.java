@@ -5,7 +5,7 @@ public class RideBean {
 	String destination;
 	String customerId;
 	String driverId;
-	String amount;
+	Double amount;
 	String status;
 
 	public String getStatus() {
@@ -48,12 +48,12 @@ public class RideBean {
 		this.driverId = driverId;
 	}
 
-	public String getAmount() {
+	public double getAmount() {
 		return amount;
 	}
 
-	public void setAmount(String amount) {
-		this.amount = amount;
+	public void setAmount(double d) {
+		this.amount = d;
 	}
 
 }

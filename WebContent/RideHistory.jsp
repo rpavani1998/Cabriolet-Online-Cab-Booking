@@ -1,9 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+
+
 <html>
 <head>
-<title>Rides History</title>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="CSS/RideHistory.css">
@@ -16,8 +17,15 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="JS/RideHistory.js"></script>
+<title>SELECT Operation</title>
+<script>
+            function confirmGo(m,u) {
+                if ( confirm(m) ) {
+                    window.location = u;
+                }
+            }
+        </script>
 </head>
-
 <body>
 	<header>
 		<div id="mySidenav" class="sidenav">
@@ -41,15 +49,50 @@
 		<div id="title" style="cursor: pointer" onclick="#">
 			<span class="glyphicon glyphicon-map-marker"></span>Cabriolet
 		</div>
-
+		<hr>
 	</header>
+	<sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost/Cabriolet1" user="root" password="rajula" />
 
+	<sql:query dataSource="${dbsource}" var="result">
+            SELECT * from Ride ;
+        </sql:query>
 	<div class="container">
 		<h1>Your Rides History</h1>
+
+		<center>
+			<form>
+				<table border="1" width="40%">
+					<caption>Ride Details</caption>
+					<tr>
+						<th>Driver Id</th>
+						<th>Customer Id</th>
+						<th>Source</th>
+						<th>Destination</th>
+						<th>Status</th>
+						<th>Amount</th>
+						<th>Booking Time</th>
+
+					</tr>
+					<c:forEach var="row" items="${result.rows}">
+						<tr>
+							<td><c:out value="${row.driverId}" /></td>
+							<td><c:out value="${row.customerId}" /></td>
+							<td><c:out value="${row.source}" /></td>
+							<td><c:out value="${row.destination}" /></td>
+							<td><c:out value="${row.status}" /></td>
+							<td><c:out value="${row.amount}" /></td>
+							<td><c:out value="${row.bookingTime}" /></td>
+
+						</tr>
+					</c:forEach>
+				</table>
 	</div>
+	</form>
+	<a href="trial.jsp">Go Home</a>
+
+	</center>
 </body>
-
-
-
-
 </html>
+
+

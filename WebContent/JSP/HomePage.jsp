@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Place Autocomplete</title>
+<title>HomePage</title>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="CSS/HomePage.css">
@@ -19,19 +19,19 @@
 <script src="JS/HomePage.js"></script>
 </head>
 
-<body>
+<body >
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
-		<br> <a href="#"><span class="glyphicon glyphicon-user"
+		<br> <a href="JSP/UserProfile.jsp"><span class="glyphicon glyphicon-user"
 			style="font-size: 30px; color: white;"></span>&ensp; Your Account</a> <a></a>
 		<a href="#"><span class="glyphicon glyphicon-star-empty"
 			style="font-size: 30px; color: white;"></span>&ensp; Your Ride</a> <a></a>
 		<a href="#"><span class="glyphicon glyphicon-credit-card"
 			style="font-size: 30px; color: white;"></span>&ensp; Payment</a> <a></a>
-		<a href="display.jsp"><span class="glyphicon glyphicon-list"
+		<a href="JSP/RideHistory.jsp"><span class="glyphicon glyphicon-list"
 			style="font-size: 30px; color: white;"></span>&ensp; Rides History</a> <a></a>
-		<a href="#"><span class="glyphicon glyphicon-off"
+		<a href="WelcomePage.html"><span class="glyphicon glyphicon-off"
 			style="font-size: 30px; color: white;"></span>&ensp; Log Out</a>
 	</div>
 
@@ -43,9 +43,9 @@
 		<span class="glyphicon glyphicon-map-marker"></span>Cabriolet
 	</div>
 	<hr>
-	<input id="origin-input" class="controls" type="text"
+	<input id="origin-input" name ="origin_input" class="controls" type="text"
 		placeholder="Enter an origin location">
-	<input id="destination-input" class="controls" type="text"
+	<input id="destination-input" name = "destination_input" class="controls" type="text"
 		placeholder="Enter a destination location">
 
 	<div id="mode-selector" class="controls">
@@ -56,44 +56,44 @@
 			name="type" id="changemode-driving" checked="checked"> <label
 			for="changemode-driving">Driving</label>
 	</div>
-
+	
+		
 	<div id="map"></div>
 
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaUnlvOLz0h3PlhKnbBCcph86jMWYUHf0&libraries=places&callback=initMap"
 		async defer></script>
+	
 	<div class="d-flex flex-row-reverse">
 		<div class="heading">Take a Ride</div>
 		<div class="row">
-			<form>
+			<form role="form" action="RideController" method="post">
 				<div class="col-md-offset-6">
 					<div>
 						<br>
-						<div>
-							&ensp;Source:
-							<div id="source"></div>
-						</div>
-						<div id="destination">&ensp;Destination:</div>
+						&ensp;&ensp;&ensp;&ensp;
+						<h>Source:</h2><input id="source" name = "source" class="controls" type="text"
+		placeholder="Source"><br>
+						
+						<h>Destination:</h><input id="destination" name ="destination"  class="controls" type="text"
+		placeholder="Destination"><br>
 						&ensp;
-						<div class="btn-group">
-							<button type="button"
-								class="btn btn-default btn-lg btn-block dropdown-toggle"
-								data-toggle="dropdown">
-								Car Type <span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="#"> Micro</a></li>
-								<li><a href="#"> Mini</a></li>
-								<li><a href="#"> Sedan</a></li>
-								<li><a href="#"> Prime</a></li>
-							</ul>
-						</div>
-						<br>
-						<br> &ensp;
-						<button type="button" class="btn btn-default submit">
+						
+						<br> &ensp;&ensp;&ensp;
+						<button type="button" class="btn btn-default submit" onclick="getDistance()">
 							Estimate Ride Cost</button>
-						&ensp;&ensp;
-						<button type="button" class="btn btn-default submit">
+						
+						&ensp;
+						<br><br>
+						&ensp; <h>Cost :</h><input id="costEstimate" name="costEstimate" class="controls" type="text"
+		placeholder="Estimated Cost"><br>
+						&ensp;
+						
+						<h>Time :</h><input id="timeEstimate" class="controls" type="text"
+		placeholder="Estimated Time"><br>
+						&ensp;
+						<br>
+						&ensp;&ensp;&ensp;&ensp;<button type="submit" class="btn btn-default submit">
 							Confirm Your Ride</button>
 					</div>
 				</div>

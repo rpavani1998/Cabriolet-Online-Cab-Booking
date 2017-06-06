@@ -10,6 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.talentsprint.beans.RideBean;
 import com.talentsprint.dbconnection.LoginDAO;
 
 /**
@@ -47,7 +50,9 @@ public class UserLoginController extends HttpServlet {
 		String phoneNumber = request.getParameter("phoneNumber");
 		String password = request.getParameter("password");
 		PrintWriter out = response.getWriter();
-
+		HttpSession session = request.getSession(); 
+		session.setAttribute("customerID", phoneNumber);
+		
 		LoginDAO loginDAO = new LoginDAO();
 		try {
 			boolean result = loginDAO.validate(phoneNumber, password);

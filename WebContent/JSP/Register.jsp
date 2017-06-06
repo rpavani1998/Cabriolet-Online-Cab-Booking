@@ -19,54 +19,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<style>
-body, h1, h5 {
-	font-family: "Raleway", sans-serif
-}
-
-.w3-allerta {
-	font-family: "Allerta Stencil", Sans-serif;
-	font-size: 80px;
-}
-
-body, html {
-	height: 100%
-}
-
-.bgimg {
-	background-image: url('CSS/Images/backgroundcar.jpg');
-	min-height: 100%;
-	background-position: center;
-	background-size: cover;
-}
-
-h4, .close {
-	background-color: black;
-	color: white !important;
-	text-align: center;
-	font-size: 30px;
-	height: 100%
-}
-
-.container-header {
-	background-color: black;
-	color: white !important;
-	text-align: center;
-	font-size: 30px;
-}
-
-.footer {
-	background-color: #f9f9f9;
-}
-
-.container {
-	width: 400px;
-	margin-left: auto;
-	margin-right: auto;
-	background: white;
-	align-content: center;
-}
-</style>
+<link rel="stylesheet" 	href="../CSS/Register.css">
 </head>
 
 <body>
@@ -80,7 +33,7 @@ h4, .close {
 		<span class="glyphicon glyphicon-pencil"></span> Registration
 	</h4>
 	</section> <section class="container-body" style="padding:40px 50px;">
-	<form role="form" action="CreateUser" method="post">
+	<form role="form" action="../CreateUser" method="post">
 		<section class="form-group"> <label for="firstName"><span
 			class="glyphicon glyphicon-user"></span> First Name</label> <input
 			type="text" class="form-control" name="firstName" required=""
@@ -99,9 +52,9 @@ h4, .close {
 		<section class="form-group"> <label for="gender"><span
 			class="glyphicon glyphicon-user"></span> Gender</label> <br>
 		<label class="radio-inline"> <input type="radio" name="gender"
-			value="Male"> Male
+			value="M"> Male
 		</label> <label class="radio-inline"> <input type="radio"
-			name="gender" value="Female"> Female
+			name="gender" value="F"> Female
 		</label> </section>
 
 		<section class="form-group"> <label for="dateOfBirth"><span
@@ -124,7 +77,7 @@ h4, .close {
 			type="password" class="form-control" name="reEnterPassword"
 			required="" placeholder="Re-enter Password"> </section>
 
-		<button type="submit" class="btn btn-basic btn-block">
+		<button type="submit" class="btn btn-basic btn-block" >
 			<span class="glyphicon glyphicon-ok"></span> Sign Up
 		</button>
 

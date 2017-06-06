@@ -40,6 +40,7 @@ function initMap() {
 /**
  * @constructor
  */
+
 function AutocompleteDirectionsHandler(map) {
 	this.map = map;
 	this.originPlaceId = null;
@@ -147,27 +148,25 @@ var dlng;
 
 function getPickupLatitudeLongitude() {
 	var address = document.getElementById("origin-input").value;
+	document.getElementById("source").value =  document.getElementById("origin-input").value;
 	geocoder = new google.maps.Geocoder();
 	geocoder.geocode({
 		'address' : address
 	}, function(results, status) {
 		plat = results[0].geometry.location.lat();
 		plng = results[0].geometry.location.lng();
-		document.getElementById("pickUpLatitude").value = plat;
-		document.getElementById("pickUpLongitude").value = plng;
 	});
 }
 
 function getDropLatitudeLongitude() {
 	var address = document.getElementById("destination-input").value;
+	document.getElementById("destination").value =  document.getElementById("destination-input").value;
 	geocoder = new google.maps.Geocoder();
 	geocoder.geocode({
 		'address' : address
 	}, function(results, status) {
 		dlat = results[0].geometry.location.lat();
 		dlng = results[0].geometry.location.lng();
-		document.getElementById("dropLatitude").value = dlat;
-		document.getElementById("dropLongitude").value = dlng;
 	});
 }
 
@@ -175,5 +174,31 @@ function calcDistance() {
 	var distance = google.maps.geometry.spherical.computeDistanceBetween(
 			new google.maps.LatLng(plat, plng), new google.maps.LatLng(dlat,
 					dlng));
-	document.getElementById("distance").value = distance / 1000;
+	// document.getElementById("distance").value = distance / 1000;
+	document.getElementById("costEstimate").value = (((distance / 1000)) );
+}
+
+function getDistance()
+{
+   //Find the distance
+   var distanceService = new google.maps.DistanceMatrixService();
+   distanceService.getDistanceMatrix({
+      origins: [$("#origin-input").val()],
+      destinations: [$("#destination-input").val()],
+      travelMode: google.maps.TravelMode.DRIVING,
+      unitSystem: google.maps.UnitSystem.METRIC,
+      durationInTraffic: true,
+      avoidHighways: false,
+      avoidTolls: false
+  },
+  function (response, status) {
+      if (status !== google.maps.DistanceMatrixStatus.OK) {
+          console.log('Error:', status);
+      } else {
+          distance = console.log(response);
+          document.getElementById("costEstimate").value = ((response.rows[0].elements[0].distance.value)/1000)*10;
+          document.getElementById("timeEstimate").value = (response.rows[0].elements[0].duration.text);
+          
+      }
+  });
 }
