@@ -5,6 +5,7 @@ function getLocation() {
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(showPosition);
 	}
+	return;
 }
 
 function showPosition(position) {
@@ -33,8 +34,47 @@ function initMap() {
 		},
 		zoom : 13
 	});
-
+	getLocation();
 	new AutocompleteDirectionsHandler(map);
+	var geocoder = new google.maps.Geocoder;
+	var infowindow = new google.maps.InfoWindow;
+
+	document.getElementById('submit').addEventListener('click', function() {
+		geocodeLatLng(geocoder, map, infowindow);
+	});
+}
+
+function geocodeLatLng(geocoder, map, infowindow) {
+	var input = lat + "," + lng;
+	console.log(input);
+	var latlngStr = input.split(',', 2);
+	var latlng = {
+		lat : parseFloat(latlngStr[0]),
+		lng : parseFloat(latlngStr[1])
+	};
+	geocoder
+			.geocode(
+					{
+						'location' : latlng
+					},
+					function(results, status) {
+						if (status === 'OK') {
+							if (results[1]) {
+								map.setZoom(11);
+								var marker = new google.maps.Marker({
+									position : latlng,
+									map : map
+								});
+								document.getElementById('origin-input').value = (results[1].formatted_address);
+								infowindow.open(map, marker);
+							} else {
+								window.alert('No results found');
+							}
+						} else {
+							window.alert('Geocoder failed due to: ' + status);
+						}
+					});
+
 }
 
 /**
@@ -42,7 +82,7 @@ function initMap() {
  */
 var originInput;
 var destinationInput;
-var target ="Hyderabad";
+var target = "Hyderabad";
 
 function AutocompleteDirectionsHandler(map) {
 	this.map = map;
@@ -151,7 +191,8 @@ var dlng;
 
 function getPickupLatitudeLongitude() {
 	var address = document.getElementById("origin-input").value;
-	document.getElementById("source").value =  document.getElementById("origin-input").value;
+	document.getElementById("source").value = document
+			.getElementById("origin-input").value;
 	geocoder = new google.maps.Geocoder();
 	geocoder.geocode({
 		'address' : address
@@ -163,7 +204,8 @@ function getPickupLatitudeLongitude() {
 
 function getDropLatitudeLongitude() {
 	var address = document.getElementById("destination-input").value;
-	document.getElementById("destination").value =  document.getElementById("destination-input").value;
+	document.getElementById("destination").value = document
+			.getElementById("destination-input").value;
 	geocoder = new google.maps.Geocoder();
 	geocoder.geocode({
 		'address' : address
@@ -178,43 +220,50 @@ function calcDistance() {
 			new google.maps.LatLng(plat, plng), new google.maps.LatLng(dlat,
 					dlng));
 	// document.getElementById("distance").value = distance / 1000;
-	document.getElementById("costEstimate").value = (((distance / 1000)) );
+	document.getElementById("costEstimate").value = (((distance / 1000)));
 }
 
 function getDistance()
 
 {
 	getLocation();
-   //Find the distance
-   var distanceService = new google.maps.DistanceMatrixService();
-   distanceService.getDistanceMatrix({
-      origins: [$("#origin-input").val()],
-      destinations: [$("#destination-input").val()],
-      travelMode: google.maps.TravelMode.DRIVING,
-      unitSystem: google.maps.UnitSystem.METRIC,
-      durationInTraffic: true,
-      avoidHighways: false,
-      avoidTolls: false
-  },
-  function (response, status) {
-      if (status !== google.maps.DistanceMatrixStatus.OK) {
-          console.log('Error:', status);
-      } else {
-    	  originInput = toString(originInput);
-    	  destinationInput = toString(destinationInput);
-    	  var costPerKm = parseInt(document.getElementById("type").value);
-    	  var distance1 = (response.rows[0].elements[0].distance.value)/1000;
-    	  document.getElementById("distanceEstimate").value = (distance1)+" Km";
-          document.getElementById("costEstimate").value = "Rs." + parseInt(((response.rows[0].elements[0].distance.value)/1000)*costPerKm);
-          document.getElementById("timeEstimate").value = (response.rows[0].elements[0].duration.text);
-          if(originInput.toLowerCase.contains(target.toLowerCase)   &&  destinationInput.toLowerCase.contains(target.toLowerCase)){
-          }else {
-        	   
-        	  alert("Choose within the vicinity of Hyderabad!!")
-          }
-      }  
-      
-  });
+	// Find the distance
+	var distanceService = new google.maps.DistanceMatrixService();
+	distanceService
+			.getDistanceMatrix(
+					{
+						origins : [ $("#origin-input").val() ],
+						destinations : [ $("#destination-input").val() ],
+						travelMode : google.maps.TravelMode.DRIVING,
+						unitSystem : google.maps.UnitSystem.METRIC,
+						durationInTraffic : true,
+						avoidHighways : false,
+						avoidTolls : false
+					},
+					function(response, status) {
+						if (status !== google.maps.DistanceMatrixStatus.OK) {
+							console.log('Error:', status);
+						} else {
+							originInput = originInput.value;
+							destinationInput = destinationInput.value;
+							if (originInput.indexOf(target) != -1
+									&& destinationInput.indexOf(target) != -1) {
+
+							} else {
+
+								alert("Choose within the vicinity of Hyderabad!!");
+								return;
+							}
+							var costPerKm = parseInt(document
+									.getElementById("type").value);
+							var distance1 = (response.rows[0].elements[0].distance.value) / 1000;
+							document.getElementById("distanceEstimate").value = (distance1)
+									+ " Km";
+							document.getElementById("costEstimate").value = parseInt(((response.rows[0].elements[0].distance.value) / 1000)
+									* costPerKm);
+							document.getElementById("timeEstimate").value = (response.rows[0].elements[0].duration.text);
+
+						}
+
+					});
 }
-
-
