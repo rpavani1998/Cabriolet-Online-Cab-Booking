@@ -11,7 +11,7 @@ html, body {
 }
 
 h {
-	font-family: "Comic Sans MS", cursive, sans-serif;
+	font-family: Times New Roman;
 	font-size: 20px;
 	line-height: 1.42857143;
 	color: #333;
@@ -94,10 +94,10 @@ span.tab-space {
 }
 
 #mode-selector {
-	color: white;
-	background-color: #212121;
-	margin-left: 12px;
-	padding: 5px 11px 0px 11px;
+	    color: rgba(255, 255, 255, 0);
+	    background-color: rgba(33, 33, 33, 0);
+	    margin-left: 12px;
+	    padding: 5px 11px 0px 11px;
 }
 
 #mode-selector label {
@@ -190,6 +190,16 @@ span.tab-space {
 	font-family: "Comic Sans MS", cursive, sans-serif; 
 }
 
+.selectpicker {
+	font-size: 1.3em !important;
+	width: 150px;
+	background-color: white !important;
+	color: #424242 !important;
+	font-family: Times New Roman !important;
+	border-color: #424242;
+	border-radius: 2px;
+}
+
 .d-flex flex-row-reverse {
 	padding-right: 0px !important;
 	padding-left: 0px !important;
@@ -202,15 +212,10 @@ span.tab-space {
 	background-color: #fafafa;
 }
 
-#source, #destination, #costEstimate, #timeEstimate {
+#source, #destination, #costEstimate, #timeEstimate, #distanceEstimate {
 	font-size: 20px;
 	font-family: Times New Roman;
-}
-
-.btn-lg {
-	padding: 7px 50px !important;
-	font-weight: 600 !important;
-	letter-spacing: 1px;
+	color: #616161;
 }
 
 hr {

@@ -1,6 +1,7 @@
 package com.talentsprint.controllers;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigInteger;
 
 import javax.servlet.RequestDispatcher;
@@ -9,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 import com.talentsprint.beans.UserBean;
 import com.talentsprint.dbconnection.UserDAOImplementation;
@@ -23,10 +25,10 @@ public class CreateUser extends HttpServlet {
 	/**
 	 * Default constructor.
 	 */
-	public CreateUser() {
-		// TODO Auto-generated constructor stub
+	
+	private void msgbox(String s){
+		JOptionPane.showMessageDialog(null, s);
 	}
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -48,6 +50,11 @@ public class CreateUser extends HttpServlet {
 		doGet(request, response);
 		int result = 0;
 		UserBean user = new UserBean();
+		PrintWriter out = response.getWriter();
+		//if(request.getParameter("password") != request.getParameter("reEnterPassword")){
+			//msgbox("Passwords do not match!!");
+		//}
+		System.out.println(request.getParameter("password") + "" +request.getParameter("reEnterPassword"));
 		user.setFirstName(request.getParameter("firstName"));
 		user.setLastName(request.getParameter("lastName"));
 		user.setEmailId(request.getParameter("emailID"));

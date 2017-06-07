@@ -1,6 +1,9 @@
 package com.talentsprint.dbconnection;
 
 import java.sql.*;
+
+import javax.swing.JOptionPane;
+
 import com.talentsprint.beans.UserBean;
 
 public class UserDAOImplementation implements UserDAO {
@@ -11,6 +14,7 @@ public class UserDAOImplementation implements UserDAO {
 			Connection connection = ConnectionFactory.getConnection();
 			PreparedStatement query = connection.prepareStatement(
 					"insert into Customer(firstName,lastName,emailID,phoneNumber,gender,DOB,password) values(?,?,?,?,?,?,md5(?))");
+			
 			query.setString(1, user.getFirstName());
 			query.setString(2, user.getLastName());
 			query.setString(3, user.getEmailId());
@@ -23,9 +27,15 @@ public class UserDAOImplementation implements UserDAO {
 			System.out.println(result);
 			connection.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			msgbox("This user already has an account with the same PhoneNumber/emailId");
+			
+            		
 		}
 		return result;
 	}
 
+	private void msgbox(String s){
+		JOptionPane.showMessageDialog(null, s);
+	}
 }
+

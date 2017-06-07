@@ -32,15 +32,15 @@
 	<header>
 		<div id="mySidenav" class="sidenav">
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-			<br> <a href="#"><span class="glyphicon glyphicon-user"
+			<br> <a href="UserProfile.jsp"><span class="glyphicon glyphicon-user"
 				style="font-size: 30px; color: white;"></span>&ensp; Your Account</a> <a></a>
-			<a href="#"><span class="glyphicon glyphicon-star-empty"
+			<a href="HomePage.jsp"><span class="glyphicon glyphicon-star-empty"
 				style="font-size: 30px; color: white;"></span>&ensp; Your Ride</a> <a></a>
 			<a href="#"><span class="glyphicon glyphicon-credit-card"
 				style="font-size: 30px; color: white;"></span>&ensp; Payment</a> <a></a>
-			<a href="#"><span class="glyphicon glyphicon-list"
+			<a href="RideHistory,jsp"><span class="glyphicon glyphicon-list"
 				style="font-size: 30px; color: white;"></span>&ensp; Rides History</a> <a></a>
-			<a href="#"><span class="glyphicon glyphicon-off"
+			<a href="WelcomePage.html"><span class="glyphicon glyphicon-off"
 				style="font-size: 30px; color: white;"></span>&ensp; Log Out</a>
 		</div>
 
@@ -57,29 +57,29 @@
 		url="jdbc:mysql://localhost/Cabriolet1" user="root" password="rajula" />
 
 	<sql:query dataSource="${dbsource}" var="result">
-            SELECT * from Ride ;
+            SELECT * from Ride where customerID = <%=session.getAttribute("customerID") %> order by bookingTime desc ;
         </sql:query>
 	<center>
 		<form>
-			<table border="1" width="40%">
-				<caption>Rider Details</caption>
-				<tr>
-					<th>Driver Id</th>
-					<th>Source</th>
-					<th>Destination</th>
-					<th>Status</th>
-					<th>Amount</th>
-					<th>Booking Time</th>
-					
-				</tr>
+			<table class="table-responsive table-striped table-bordered" border="" width="60%"> 
+				<thead class="thead">
+					<tr height = "10%">
+						<th>Driver Id</th>
+						<th>Source</th>
+						<th>Destination</th>
+						<th>Status</th>
+						<th>Amount</th>
+						<th>Booking Time</th>
+					</tr>
+				</thead>
 				<c:forEach var="row" items="${result.rows}">
 					<tr>
 						<td><c:out value="${row.driverId}" /></td>
-						<td><c:out value="${row.source}" /></td>
+						<td width="30%"><c:out value="${row.source}" /></td>
 						<td><c:out value="${row.destination}" /></td>
-						<td><c:out value="${row.status}" /></td>
+						<td width = "15%"><c:out value="${row.status}" /></td>
 						<td><c:out value="${row.amount}" /></td>
-						<td><c:out value="${row.bookingTime}" /></td>
+						<td width="20%"><c:out value="${row.bookingTime}" /></td>
 
 
 					</tr>

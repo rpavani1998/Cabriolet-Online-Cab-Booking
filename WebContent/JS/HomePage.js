@@ -40,14 +40,17 @@ function initMap() {
 /**
  * @constructor
  */
+var originInput;
+var destinationInput;
+var target ="Hyderabad";
 
 function AutocompleteDirectionsHandler(map) {
 	this.map = map;
 	this.originPlaceId = null;
 	this.destinationPlaceId = null;
 	this.travelMode = 'DRIVING';
-	var originInput = document.getElementById('origin-input');
-	var destinationInput = document.getElementById('destination-input');
+	originInput = document.getElementById('origin-input');
+	destinationInput = document.getElementById('destination-input');
 	var modeSelector = document.getElementById('mode-selector');
 	this.directionsService = new google.maps.DirectionsService;
 	this.directionsDisplay = new google.maps.DirectionsRenderer;
@@ -179,7 +182,9 @@ function calcDistance() {
 }
 
 function getDistance()
+
 {
+	getLocation();
    //Find the distance
    var distanceService = new google.maps.DistanceMatrixService();
    distanceService.getDistanceMatrix({
@@ -195,10 +200,21 @@ function getDistance()
       if (status !== google.maps.DistanceMatrixStatus.OK) {
           console.log('Error:', status);
       } else {
-          distance = console.log(response);
-          document.getElementById("costEstimate").value = ((response.rows[0].elements[0].distance.value)/1000)*10;
+    	  originInput = toString(originInput);
+    	  destinationInput = toString(destinationInput);
+    	  var costPerKm = parseInt(document.getElementById("type").value);
+    	  var distance1 = (response.rows[0].elements[0].distance.value)/1000;
+    	  document.getElementById("distanceEstimate").value = (distance1)+" Km";
+          document.getElementById("costEstimate").value = "Rs." + parseInt(((response.rows[0].elements[0].distance.value)/1000)*costPerKm);
           document.getElementById("timeEstimate").value = (response.rows[0].elements[0].duration.text);
-          
-      }
+          if(originInput.toLowerCase.contains(target.toLowerCase)   &&  destinationInput.toLowerCase.contains(target.toLowerCase)){
+          }else {
+        	   
+        	  alert("Choose within the vicinity of Hyderabad!!")
+          }
+      }  
+      
   });
 }
+
+

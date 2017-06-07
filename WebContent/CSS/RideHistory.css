@@ -1,9 +1,3 @@
-#map {
-	height: 82%;
-	width: 70%;
-	float: left;
-}
-
 html, body {
 	height: 100%;
 	margin: 0;
@@ -11,99 +5,10 @@ html, body {
 }
 
 h {
-	font-family: "Comic Sans MS", cursive, sans-serif;
-	font-size: 20px;
-	line-height: 1.42857143;
-	color: #333;
-}
-
-span.tab-space {
-	padding-left:6em;
-}
-
-.controls {
-	border: 1px solid transparent;
-	border-radius: 2px 0 0 2px;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	height: 32px;
-	outline: none;
-
-}
-
-.control {
-	border: 1px solid transparent;
-	border-radius: 2px 0 0 2px;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	height: 32px;
-	outline: none;
-	text-align: center;
-	width: 350px;
-	font: 20px;
-}
-
-#origin-input .style {
-	z-index: 0;
-	position: absolute;
-	left: 76px;
-	top: 6px;
-}
-
-#destination-input .absolute {
-	z-index: 0;
-	position: absolute;
-	left: 2px;
-	top: 53px;
-}
-
-#origin-input {
-	background-color: #212121;
-	color: white !important;
-	font-family: -webkit-pictograph;
-	font-size: 20px;
-	font-weight: 300;
-	margin-left: 12px;
-	padding: 0 11px 0 13px;
-	text-overflow: ellipsis;
-	width: 300px;
-}
-
-#origin-input:focus {
-	border-color: #4d90fe;
-}
-
-#destination-input {
-	background-color: #212121;
-	color: white !important;
-	font-family: -webkit-pictograph;
-	font-size: 20px;
-	font-weight: 300;
-	margin-left: 12px;
-	padding: 0 11px 0 13px;
-	text-overflow: ellipsis;
-	width: 300px;
-	z-index: 0;
-	position: absolute;
-	left: 2px;
-	top: 53px;
-}
-
-#destination-input:focus {
-	border-color: #4d90fe;
-}
-
-#mode-selector {
-	color: white;
-	background-color: #212121;
-	margin-left: 12px;
-	padding: 5px 11px 0px 11px;
-}
-
-#mode-selector label {
-	font-family: Roboto;
-	font-size: 13px;
-
+	font-size: 40px;
+	font-family: "Allerta Stencil", Sans-serif;
+	text-align: center !important;
+	color: black !important;
 }
 
 .sidenav {
@@ -182,39 +87,21 @@ span.tab-space {
 	color: white;
 }
 
-.submit {
-	font-size: 1.1em;
-	width: 200px;
-	background-color: #424242 !important;
-	color: white !important;
-	font-family: "Comic Sans MS", cursive, sans-serif; 
-}
-
-.d-flex flex-row-reverse {
-	padding-right: 0px !important;
-	padding-left: 0px !important;
-	margin-right: 0px !important;
-	margin-left: 0px !important;
-	width: 30%;
-}
-
-.col-md-offset-6 {
-	background-color: #fafafa;
-}
-
-	font-size: 20px;
-	font-family: Times New Roman;
-}
-
-.btn-lg {
-	padding: 7px 50px !important;
-	font-weight: 600 !important;
-	letter-spacing: 1px;
-}
 
 hr {
 	margin-top: 0px !important;
 	margin-bottom: 2px !important;
 	border: 0;
 	border-top: 2px solid black !important;
+}
+
+.thead{
+	color: white;
+	background-color: black;
+	border-color: #9e9e9e;
+}
+
+.table-responsive{
+	border-color: black;
+   
 }

@@ -20,6 +20,9 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" 	href="../CSS/Register.css">
+<script
+	src="JS/Register.js"></script>
+
 </head>
 
 <body>
@@ -69,13 +72,13 @@
 
 		<section class="form-group"> <label for="password"><span
 			class="glyphicon glyphicon-eye-open"></span> Password</label> <input
-			type="password" class="form-control" name="password" required=""
+			type="password" class="form-control" name="password" id = "password" required=""
 			placeholder="Enter Password"> </section>
 
 		<section class="form-group"> <label for="reEnterPassword"><span
 			class="glyphicon glyphicon-eye-open"></span> Re-enter Password</label> <input
 			type="password" class="form-control" name="reEnterPassword"
-			required="" placeholder="Re-enter Password"> </section>
+			required="" id="reEnterPassword" placeholder="Re-enter Password"> </section>
 
 		<button type="submit" class="btn btn-basic btn-block" >
 			<span class="glyphicon glyphicon-ok"></span> Sign Up
