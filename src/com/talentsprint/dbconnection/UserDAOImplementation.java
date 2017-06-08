@@ -34,6 +34,29 @@ public class UserDAOImplementation implements UserDAO {
 		return result;
 	}
 
+	void forgetPasswordCheck(String customerId){
+		try {
+			UserBean userBean = new UserBean();
+			Connection connection = ConnectionFactory.getConnection();
+			Statement statement = connection.createStatement();
+			String query = "select emailId from Customer where phoneNumber ='"+customerId+"'";
+			ResultSet resultSet = statement.executeQuery(query);
+
+			if (resultSet.next()) {
+				userBean.setEmailId(resultSet.getString(1));
+
+			}
+			resultSet.close();
+			connection.close();
+		} catch (Exception e) {
+			msgbox("This user already has an account with the same PhoneNumber/emailId");
+			
+            		
+		}
+		
+	}
+	
+	
 	private void msgbox(String s){
 		JOptionPane.showMessageDialog(null, s);
 	}
