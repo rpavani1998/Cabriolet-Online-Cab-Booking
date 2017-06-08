@@ -19,7 +19,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="../JS/RideHistory.js"></script>
-<title>SELECT Operation</title>
+<title>Ride History</title>
 <script>
 	function confirmGo(m, u) {
 		if (confirm(m)) {
@@ -65,6 +65,7 @@
 				<thead class="thead">
 					<tr height = "10%">
 						<th>Driver Id</th>
+						<th>Cab Type</th>
 						<th>Source</th>
 						<th>Destination</th>
 						<th>Status</th>
@@ -74,8 +75,9 @@
 				</thead>
 				<c:forEach var="row" items="${result.rows}">
 					<tr>
-						<td><c:out value="${row.driverId}" /><td width="30%"><c:out value="${row.source}" /></td></td>
-						
+						<td><c:out value="${row.driverId}" />
+						<td><c:out value="${row.carType}" />
+						<td width="30%"><c:out value="${row.source}" /></td></td>
 						<td><c:out value="${row.destination}" /></td>
 						<td width = "15%"><c:out value="${row.status}" /></td>
 						<td><c:out value="${row.amount}" /></td>

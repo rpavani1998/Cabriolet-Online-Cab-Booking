@@ -31,6 +31,9 @@
 			style="font-size: 30px; color: white;"></span>&ensp; Your Ride</a> <a></a>
 		<a href="#"><span class="glyphicon glyphicon-credit-card"
 			style="font-size: 30px; color: white;"></span>&ensp; Payment</a> <a></a>
+			
+			
+			
 		<a href="JSP/RideHistory.jsp"><span class="glyphicon glyphicon-list"
 			style="font-size: 30px; color: white;"></span>&ensp; Rides History</a> <a></a>
 		<a href="WelcomePage.html"><span class="glyphicon glyphicon-off"
@@ -48,7 +51,7 @@
 	<input id="origin-input" class="controls" type="text"
 		placeholder="Enter an origin location">
 	<input id="submit" type="button" class="btn btn-default submit"
-		value="getLocation">
+		value="Get Your Current Location">
 	<input id="destination-input" class="controls" type="text"
 		placeholder="Enter a destination location">
 
@@ -83,7 +86,7 @@
 						<br> &ensp;
 						<h>Car Type:</h>
 						&ensp;&ensp; <select class="selectpicker show-tick"
-							data-style="btn-primary" id="type">
+							data-style="btn-primary" id="type" name="type">
 							<option value=6>Micro</option>
 							<option value=8>Mini</option>
 							<option value=18>SUV</option>

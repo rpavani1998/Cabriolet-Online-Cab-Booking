@@ -30,7 +30,7 @@
    		<a></a>
 			<a href="RideHistory.jsp"><span class="glyphicon glyphicon-list" style="font-size:30px;color:white;"></span>&ensp; Rides History</a>
 			<a></a>
-			<a href="WelcomePage.html"><span class="glyphicon glyphicon-off" style="font-size:30px;color:white;"></span>&ensp; Log Out</a>
+			<a href="../WelcomePage.html"><span class="glyphicon glyphicon-off" style="font-size:30px;color:white;"></span>&ensp; Log Out</a>
 		</div>
 
 		<div id="main">

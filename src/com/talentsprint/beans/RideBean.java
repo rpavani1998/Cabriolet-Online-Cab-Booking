@@ -7,6 +7,7 @@ public class RideBean {
 	String driverId;
 	Double amount;
 	String status;
+	String carType;
 
 	public String getStatus() {
 		return status;
@@ -18,6 +19,14 @@ public class RideBean {
 
 	public String getSource() {
 		return source;
+	}
+
+	public String getCarType() {
+		return carType;
+	}
+
+	public void setCarType(String carType) {
+		this.carType = carType;
 	}
 
 	public void setSource(String source) {

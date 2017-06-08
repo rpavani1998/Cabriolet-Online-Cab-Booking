@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 import com.talentsprint.beans.RideBean;
 
 public class RideDAO {
@@ -17,18 +19,25 @@ public class RideDAO {
 		try {
 			Connection connection = ConnectionFactory.getConnection();
 			PreparedStatement query = connection.prepareStatement(
-					"insert into Ride(driverId,customerId,source,destination,status,amount,bookingTime) values(?,?,?,?,?,?,NOW())");
+					"insert into Ride(driverId,customerId,source,destination,status,amount,bookingTime,carType) values(?,?,?,?,?,?,NOW(),?)");
 			
 			query.setString(2, rideBean.getCustomerId());
 			query.setString(3, rideBean.getSource());
 			query.setString(4, rideBean.getDestination());
 			query.setString(5, rideBean.getStatus());
 			query.setDouble(6, rideBean.getAmount());
-
-			PreparedStatement query1 = connection.prepareStatement("select * from Driver where status = 'Available' limit 1");
+			String type = rideBean.getCarType();
+			query.setString(7, type);
+			
+			
+			PreparedStatement query1 = connection.prepareStatement("select phoneNumber from Driver where cabNumber = (select distinct(d.cabNumber) from Driver d, Cab c where d.status = 'Available' and c.type = '"+type+"')");
 			ResultSet resultSet = query1.executeQuery();
-			while(resultSet.next()){
-				query.setString(1, resultSet.getString(4));
+			if(resultSet.next()){
+				System.out.println(resultSet.getString(1));
+				query.setString(1, resultSet.getString(1));
+			} else {
+				msgbox("Sorry! There are no cabs available.Please try later");
+				return -1;
 			}
 			
 			result = query.executeUpdate();
@@ -37,6 +46,11 @@ public class RideDAO {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	private static void msgbox(String string) {
+		JOptionPane.showMessageDialog(null, string);
+		
 	}
 
 }
