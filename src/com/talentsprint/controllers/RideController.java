@@ -58,7 +58,7 @@ public class RideController extends HttpServlet {
 		rideBean.setCustomerId(customerID);
 		System.out.println(request.getParameter("costEstimate"));
 		rideBean.setAmount(Double.parseDouble(request.getParameter("costEstimate")));
-		rideBean.setStatus("0");
+		rideBean.setStatus("Waiting");
 		try {
 			RideDAO.bookARide(rideBean);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("JSP/RideHistory.jsp");

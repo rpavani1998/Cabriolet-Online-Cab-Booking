@@ -24,15 +24,14 @@
 <body>
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-		<br> <a href="UserProfile.jsp"><span
+		<br> <a href="JSP/UserProfile.jsp"><span
 			class="glyphicon glyphicon-user"
 			style="font-size: 30px; color: white;"></span>&ensp; Your Account</a> <a></a>
-		<a href="HomePage.jsp"><span
-			class="glyphicon glyphicon-star-empty"
+		<a href="JSP/HomePage.jsp"><span class="glyphicon glyphicon-star-empty"
 			style="font-size: 30px; color: white;"></span>&ensp; Your Ride</a> <a></a>
 		<a href="#"><span class="glyphicon glyphicon-credit-card"
 			style="font-size: 30px; color: white;"></span>&ensp; Payment</a> <a></a>
-		<a href="RideHistory.jsp"><span class="glyphicon glyphicon-list"
+		<a href="JSP/RideHistory.jsp"><span class="glyphicon glyphicon-list"
 			style="font-size: 30px; color: white;"></span>&ensp; Rides History</a> <a></a>
 		<a href="WelcomePage.html"><span class="glyphicon glyphicon-off"
 			style="font-size: 30px; color: white;"></span>&ensp; Log Out</a>

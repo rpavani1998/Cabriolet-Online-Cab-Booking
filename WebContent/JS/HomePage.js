@@ -83,6 +83,7 @@ function geocodeLatLng(geocoder, map, infowindow) {
 var originInput;
 var destinationInput;
 var target = "Hyderabad";
+var target1 = "Secunderabad";
 
 function AutocompleteDirectionsHandler(map) {
 	this.map = map;
@@ -246,8 +247,9 @@ function getDistance()
 						} else {
 							originInput = originInput.value;
 							destinationInput = destinationInput.value;
-							if (originInput.indexOf(target) != -1
-									&& destinationInput.indexOf(target) != -1) {
+							if (((originInput.indexOf(target) != -1) || (originInput.indexOf(target1) != -1)) 
+								&&  ((destinationInput.indexOf(target) != -1) || (destinationInput.indexOf(target1) != -1))) 
+							{
 
 							} else {
 

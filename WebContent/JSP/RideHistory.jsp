@@ -38,7 +38,7 @@
 				style="font-size: 30px; color: white;"></span>&ensp; Your Ride</a> <a></a>
 			<a href="#"><span class="glyphicon glyphicon-credit-card"
 				style="font-size: 30px; color: white;"></span>&ensp; Payment</a> <a></a>
-			<a href="RideHistory,jsp"><span class="glyphicon glyphicon-list"
+			<a href="RideHistory.jsp"><span class="glyphicon glyphicon-list"
 				style="font-size: 30px; color: white;"></span>&ensp; Rides History</a> <a></a>
 			<a href="WelcomePage.html"><span class="glyphicon glyphicon-off"
 				style="font-size: 30px; color: white;"></span>&ensp; Log Out</a>
@@ -74,8 +74,8 @@
 				</thead>
 				<c:forEach var="row" items="${result.rows}">
 					<tr>
-						<td><c:out value="${row.driverId}" /></td>
-						<td width="30%"><c:out value="${row.source}" /></td>
+						<td><c:out value="${row.driverId}" /><td width="30%"><c:out value="${row.source}" /></td></td>
+						
 						<td><c:out value="${row.destination}" /></td>
 						<td width = "15%"><c:out value="${row.status}" /></td>
 						<td><c:out value="${row.amount}" /></td>

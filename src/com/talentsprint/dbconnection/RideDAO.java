@@ -25,7 +25,7 @@ public class RideDAO {
 			query.setString(5, rideBean.getStatus());
 			query.setDouble(6, rideBean.getAmount());
 
-			PreparedStatement query1 = connection.prepareStatement("select * from Driver where status = 'yes' limit 1");
+			PreparedStatement query1 = connection.prepareStatement("select * from Driver where status = 'Available' limit 1");
 			ResultSet resultSet = query1.executeQuery();
 			while(resultSet.next()){
 				query.setString(1, resultSet.getString(4));
