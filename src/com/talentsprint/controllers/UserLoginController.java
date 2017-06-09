@@ -3,7 +3,15 @@ package com.talentsprint.controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Properties;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,7 +38,6 @@ public class UserLoginController extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -51,9 +58,9 @@ public class UserLoginController extends HttpServlet {
 		String phoneNumber = request.getParameter("phoneNumber");
 		String password = request.getParameter("password");
 		PrintWriter out = response.getWriter();
-		HttpSession session = request.getSession(); 
+		HttpSession session = request.getSession();
 		session.setAttribute("customerID", phoneNumber);
-		
+
 		LoginDAO loginDAO = new LoginDAO();
 		try {
 			boolean result = loginDAO.validate(phoneNumber, password);
@@ -72,5 +79,7 @@ public class UserLoginController extends HttpServlet {
 		}
 
 	}
+
+	
 
 }

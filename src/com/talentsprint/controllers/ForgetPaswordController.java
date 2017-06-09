@@ -7,6 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.talentsprint.beans.UserBean;
+import com.talentsprint.dbconnection.UserDAOImplementation;
+
+import sun.applet.resources.MsgAppletViewer_pt_BR;
+
 /**
  * Servlet implementation class ForgetPaswordController
  */
@@ -35,9 +40,25 @@ public class ForgetPaswordController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String phoneNumber = request.getParameter("fp_phoneNumber");
-		String email = request.getParameter("fp_email");
 		
+		UserDAOImplementation userDAO = new UserDAOImplementation();
+		String Id = ((String)request.getParameter("fp_phoneNumber").trim());
+		String email = ((String)request.getParameter("fp_email").trim());
+		String emailId = userDAO.forgetPasswordGetEmail(Id);
+		
+		System.out.println(email +" " + emailId);
+		if(emailId != email){
+			userDAO.msgbox("Please enter the registerd E-mailId!!");
+		}else {
+			
+			String[] to = { emailId };
+			String subject = "Change Password";
+			String msg = "You can reset your password using this verification code '"+userDAO.getPassword(Id)+"'";
+			
+			userDAO.sendMail(to, subject, msg);
+			System.out.println("message has been sent successfully");
+			
+		}
 	}
 
 }
