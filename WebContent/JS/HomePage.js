@@ -258,11 +258,24 @@ function getDistance()
 							}
 							var costPerKm = parseInt(document
 									.getElementById("type").value);
+							var baseFare;
+							if(costPerKm == 6) {
+								baseFare = 35.7;
+							} else if(costPerKm == 8) {
+								baseFare = 45;
+							} else {
+								baseFare = 150;
+							}
 							var distance1 = (response.rows[0].elements[0].distance.value) / 1000;
-							document.getElementById("distanceEstimate").value = (distance1)
+							document.getElementById("distanceEstimate").value = parseInt(distance1 + 0.5);
 									+ " Km";
-							document.getElementById("costEstimate").value = parseInt(((response.rows[0].elements[0].distance.value) / 1000)
-									* costPerKm);
+							var finalAmount = ((response.rows[0].elements[0].distance.value) / 1000) * costPerKm;
+							if(finalAmount < baseFare) {
+								document.getElementById("costEstimate").value = baseFare;
+							} else {
+								document.getElementById("costEstimate").value = parseInt((((response.rows[0].elements[0].distance.value) / 1000) * costPerKm));
+							
+							}
 							document.getElementById("timeEstimate").value = (response.rows[0].elements[0].duration.text);
 
 						}
