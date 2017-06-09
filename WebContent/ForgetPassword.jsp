@@ -1,76 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="utf-8">
-<meta name="robots" content="noindex">
-
-<title>Forgot Password</title>
+<title>Cabriolet Registration</title>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<link rel="stylesheet" href="../CSS/ForgetPassword.css">
-<style type="text/css">
-<
-link rel ="stylesheet " href ="//maxcdn.bootstrapcdn.com /font-awesome/4.3.0
-	/css/font-awesome.min.css "> <link href ='http: //fonts.googleapis.com
-	/css?family=Varela+Round ' rel ='stylesheet ' type ='text /css'> <script src
-	 ="https: //cdnjs.cloudflare.com /ajax/libs/jquery-validate/1.13.1
-	/jquery.validate.min.js "> </script> <meta name ="viewport " content
-	 ="width =device-width, initial-scale =1, maximum-scale =1" />
-</style>
-<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-<script
-	src="../JS/ForgetPassword.js"></script>
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-	window.alert = function() {
-	};
-	var defaultCSS = document.getElementById('bootstrap-css');
-	function changeCSS(css) {
-		if (css)
-			$('head > link')
-					.filter(':first')
-					.replaceWith(
-							'<link rel="stylesheet" href="'+ css +'" type="text/css" />');
-		else
-			$('head > link').filter(':first').replaceWith(defaultCSS);
-	}
-</script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="CSS/ForgetPassword.css">
+<script src="JS/ForgetPassword.js"></script>
+
 </head>
+
 <body>
-	<!-- All the files that are required -->
+
+<section class="bgimg w3-display-container w3-text-black "> 
+  <br><br><br>
+  <section class="container">
+    <section class="container-header" style="padding:35px 50px;">
+      <h4><span class="glyphicon glyphicon-lock"></span> Forgot Password</h4>
+    </section>
+		
+		<section class="text-center" style="padding:50px 0">
+			<section class="login-form-1">
+				<form id="forgot-password-form" class="text-left" action="ForgetPaswordController" method="post">
+					<section class="etc-login-form">
+						<p>When you fill in your registered email address, you will be sent instructions on how to reset your password.</p>
+					</section>
+
+					<section class="login-form-main-message"></section>
+
+					<section class="main-login-form">
+						<section class="login-group">
+        			<section class="form-group">
+          			<label for="fp_email"><span class="glyphicon glyphicon-envelope"></span> Email ID</label>
+          			<input type="email" class="form-control" id="fp_email" name="fp_email" required="" placeholder="Enter Email ID">
+        			</section>
+
+							<section class="form-group">
+          			<label for="fp_phoneNumber"><span class="glyphicon glyphicon-phone"></span> Phone Number</label>
+          			<input type="tel" class="form-control" id="fp_phoneNumber" name="fp_phoneNumber" required="" placeholder="Enter Phone Number">
+        			</section>
+						</section>
+						<button type="submit" class="btn btn-basic btn-block"><span class="glyphicon glyphicon-ok"></span> Submit</button>
+					</section>
+				</form>
+			</section>
+		</section>
+
+  	<section class="container-footer">
+    	<p align="center">Already a member? <a href="#">Login</a></p>
+  	</section>
+      
+	</section> 
+</section>
 
 
-	<div class="text-center" style="padding:50px 0">
-	<div class="logo">Forgot password</div>
-	<!-- Main Form -->
-	<div class="login-form-1">
-		<form id="forgot-password-form" class="text-left" action="../ForgetPaswordController" method="post">
-			<div class="etc-login-form">
-				<p>When you fill in your registered email address, you will be sent instructions on how to reset your password.</p>
-			</div>
-			<div class="login-form-main-message"></div>
-			<div class="main-login-form">
-				<div class="login-group">
-					<div class="form-group">
-						<label for="fp_email" class="sr-only">Email address</label>
-						<input type="text" class="form-control" id="fp_email" name="fp_email" placeholder="email address">
-						<input type="text" class="form-control" id="fp_phoneNumber" name="fp_phoneNumber" placeholder="phoneNumber">
-						
-					</div>
-				</div>
-				<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
-			</div>
-			<div class="etc-login-form">
-				<p>already have an account? <a href="HomePage.jsp">login here</a></p>
-				<p>new user? <a href="#">create new account</a></p>
-			</div>
-		</form>
-	</div>
-	<!-- end:Main Form -->
-</div>
-	
+
 </body>
 </html>
