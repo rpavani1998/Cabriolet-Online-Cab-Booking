@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -9,9 +8,12 @@
 <head>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 <meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="../CSS/RideHistory.css">
+<link rel="stylesheet" type="text/css"
+	href="../CSS/ConfirmBookingPage.css">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Ubuntu" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
@@ -19,7 +21,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="../JS/RideHistory.js"></script>
-<title>Ride History</title>
+<title>Booking Confirmed</title>
 <script>
 	function confirmGo(m, u) {
 		if (confirm(m)) {
@@ -32,9 +34,11 @@
 	<header>
 		<div id="mySidenav" class="sidenav">
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-			<br> <a href="UserProfile.jsp"><span class="glyphicon glyphicon-user"
+			<br> <a href="UserProfile.jsp"><span
+				class="glyphicon glyphicon-user"
 				style="font-size: 30px; color: white;"></span>&ensp; Your Account</a> <a></a>
-			<a href="HomePage.jsp"><span class="glyphicon glyphicon-star-empty"
+			<a href="HomePage.jsp"><span
+				class="glyphicon glyphicon-star-empty"
 				style="font-size: 30px; color: white;"></span>&ensp; Your Ride</a> <a></a>
 			<a href="#"><span class="glyphicon glyphicon-credit-card"
 				style="font-size: 30px; color: white;"></span>&ensp; Payment</a> <a></a>
@@ -53,43 +57,57 @@
 		</div>
 		<hr>
 	</header>
+	<center>
+		<h>Your Booking has been confirmed! </h>
+		<p>Here are your driver's details:</p>
+	</center>
 	<sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
 		url="jdbc:mysql://localhost/Cabriolet1" user="root" password="rajula" />
 
 	<sql:query dataSource="${dbsource}" var="result">
-            SELECT * from Ride where customerID = <%=session.getAttribute("customerID") %> order by bookingTime desc ;
+         select d.firstName,d.lastName,d.emailId,d.phoneNumber,d.gender,d.DOB,d.cabNumber from Driver d where phoneNumber = (select driverId from Ride order by bookingTime desc limit 1);
+         
         </sql:query>
-	<center>
-		<form>
-			<table class="table-responsive table-striped table-bordered" border="" width="60%"> 
-				<thead class="thead">
-					<tr height = "10%">
-						<th>Driver Id</th>
-						<th>Cab Type</th>
-						<th>Source</th>
-						<th>Destination</th>
-						<th>Status</th>
-						<th>Amount</th>
-						<th>Booking Time</th>
-					</tr>
-				</thead>
-				<c:forEach var="row" items="${result.rows}">
-					<tr>
-						<td><c:out value="${row.driverId}" />
-						<td><c:out value="${row.carType}" />
-						<td width="30%"><c:out value="${row.source}" /></td></td>
-						<td><c:out value="${row.destination}" /></td>
-						<td width = "15%"><c:out value="${row.status}" /></td>
-						<td><c:out value="${row.amount}" /></td>
-						<td width="20%"><c:out value="${row.bookingTime}" /></td>
+	<sql:query dataSource="${dbsource}" var="result1">
+        select c.type,c.name from Cab c where c.cabNumber = (select cabNumber from Driver where phoneNumber = (select driverId from Ride order by bookingTime desc limit 1));
+	     </sql:query>
 
-
-					</tr>
-				</c:forEach>
-			</table>
-		</form>
-	</center>
+	<div class="container">
+		<br>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="well well-sm">
+					<div class="row">
+						<div class="col-sm-6 col-md-4">
+							<img src="http://placehold.it/380x500" alt=""
+								class="img-rounded img-responsive" />
+						</div>
+						<div class="col-sm-6 col-md-8">
+							<c:forEach var="row" items="${result.rows}">
+								<h1>
+									<c:out value="${row.firstName}" />
+									<c:out value="${row.lastName}" />
+								</h1>
+								<p1> <i class="glyphicon glyphicon-envelope"></i>
+								<c:out value="${row.emailId}" /> <br>
+								<i class="glyphicon glyphicon-phone"></i>
+								<c:out value="${row.phoneNumber}" /> <br>
+								<i class="glyphicon glyphicon-user"> Male</i> <br>
+								<i class="glyphicon glyphicon-calendar"></i>
+								<c:out value="${row.DOB}" /> <br>
+								<i class="glyphicon glyphicon-edit"></i>${row.cabNumber} <br>
+								</p1>
+							</c:forEach>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<center>
+			<p>Enjoy your ride!</p>
+		</center>
+		<button type="button" class="btn btn-default submit">Cancel
+			Your Ride</button>
 </body>
 </html>
-
-

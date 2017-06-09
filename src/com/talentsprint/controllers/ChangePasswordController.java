@@ -1,9 +1,8 @@
 package com.talentsprint.controllers;
 
 import java.io.IOException;
-import java.net.URLEncoder;
 
-import javax.servlet.RequestDispatcher;
+import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,22 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.talentsprint.beans.UserBean;
 import com.talentsprint.dbconnection.UserDAOImplementation;
 
-import sun.applet.resources.MsgAppletViewer_pt_BR;
-
 /**
- * Servlet implementation class ForgetPaswordController
+ * Servlet implementation class ChangePasswordController
  */
-@WebServlet("/ForgetPaswordController")
-public class ForgetPaswordController extends HttpServlet {
+@WebServlet("/ChangePasswordController")
+public class ChangePasswordController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ForgetPaswordController() {
+    public ChangePasswordController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,27 +42,17 @@ public class ForgetPaswordController extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		UserDAOImplementation userDAO = new UserDAOImplementation();
-		String Id = ((String)request.getParameter("fp_phoneNumber").trim());
-		String email = ((String)request.getParameter("fp_email").trim());
-		String emailId = userDAO.forgetPasswordGetEmail(Id);
-		session.setAttribute("UserId",Id);
-		System.out.println(email +" " + emailId);
-		if(emailId.equals(email)){
-			String[] to = { emailId };
-			String subject = "Change Password";
-			String msg = "You can reset your password using this verification code '"+userDAO.getPassword(Id)+"'";
-			
-			userDAO.sendMail(to, subject, msg);
-			RequestDispatcher rd = request.getRequestDispatcher("ChangePassword.jsp");
-			rd.forward(request, response);
-			
-			}else {
-			userDAO.msgbox("Please enter the registerd E-mailId!!");
-			RequestDispatcher rd = request.getRequestDispatcher("ForgetPassword.jsp");
-			rd.forward(request, response);
-			
-			
+		String verificationCode = request.getParameter("verificationCode");
+		String newPassword = request.getParameter("password1");
+		String reEnterPassword = request.getParameter("password2");
+		String userId = (String)session.getAttribute("UserId");
+		if(newPassword.equals(reEnterPassword)){
+			userDAO.changePassword(userId, verificationCode, newPassword);
+		}else{
+			userDAO.msgbox("Passwords do not match!!");
 		}
-	}
+		
+		
+ 	}
 
 }

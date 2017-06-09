@@ -129,5 +129,25 @@ public class UserDAOImplementation implements UserDAO {
 			me.printStackTrace();
 		}
 	}
+	
+	public void changePassword(String userId,String verificationCode, String Password){
+		try {
+			Connection connection = ConnectionFactory.getConnection();
+			Statement statement = connection.createStatement();
+			String query = "select * from Customer where phoneNumber = '"+userId+"' and password = '"+verificationCode+"'";
+			ResultSet resultSet = statement.executeQuery(query);
+			if (resultSet.next()) {
+				String query1 = "update Customer set password =MD5('" + Password + "') where  phoneNumber = '"+userId+"'";
+				int result = statement.executeUpdate(query1); 
+							}
+			resultSet.close();
+			connection.close();
+		} catch (Exception e) {
+			msgbox("Enter the correct verification Code!!");
 
-}
+		}
+			}
+		
+	}
+
+
