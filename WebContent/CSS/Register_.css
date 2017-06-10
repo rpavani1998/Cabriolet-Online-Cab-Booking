@@ -1,0 +1,55 @@
+body, h1, h5 {
+	font-family: "Raleway", sans-serif
+}
+
+.w3-allerta {
+	font-family: "Allerta Stencil", Sans-serif;
+	font-size: 80px;
+}
+
+body, html {
+	height: 100%
+}
+
+.bgimg {
+	background-image: url('../CSS/Images/backgroundcar.jpg');
+	min-height: 100%;
+	background-position: center;
+	background-size: cover;
+}
+
+hr {
+	margin-top: 0px !important;
+	margin-bottom: 2px !important;
+	border: 0;
+	border-top: 2px solid black !important;
+}
+
+h4, .close {
+	background-color: black;
+	color: white !important;
+	text-align: center;
+	font-size: 30px;
+	height: 100%
+}
+
+.container-header {
+	background-color: black;
+	color: white !important;
+	text-align: center;
+	font-size: 30px;
+}
+
+.footer {
+	background-color: #f9f9f9;
+}
+
+.container {
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+	background: white;
+	align-content: center;
+	padding-right: 0px;
+	padding-left: 0px;
+}

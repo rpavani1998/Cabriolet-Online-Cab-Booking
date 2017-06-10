@@ -58,14 +58,15 @@ public class UserLoginController extends HttpServlet {
 		String phoneNumber = request.getParameter("phoneNumber");
 		String password = request.getParameter("password");
 		PrintWriter out = response.getWriter();
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(true);
 		session.setAttribute("customerID", phoneNumber);
+		request.setAttribute("customerID", phoneNumber);
 
 		LoginDAO loginDAO = new LoginDAO();
 		try {
 			boolean result = loginDAO.validate(phoneNumber, password);
 			if (result) {
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("JSP/HomePage.jsp");
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("HomePage.jsp");
 				requestDispatcher.forward(request, response);
 
 			} else {

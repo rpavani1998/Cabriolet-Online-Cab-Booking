@@ -8,7 +8,7 @@
 <title>HomePage</title>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 <meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="CSS/HomePage.css">
+<link rel="stylesheet" type="text/css" href="CSS/Home_Page.css">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
 <link rel="stylesheet"
@@ -17,24 +17,24 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="JS/HomePage.js"></script>
+<script src="JS/Home_Page.js"></script>
 
 </head>
 
 <body>
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-		<br> <a href="UserProfile.jsp"><span
+		<br> <a href="JSP/UserProfile.jsp"><span
 			class="glyphicon glyphicon-user"
 			style="font-size: 30px; color: white;"></span>&ensp; Your Account</a> <a></a>
 		<a href="HomePage.jsp"><span class="glyphicon glyphicon-star-empty"
 			style="font-size: 30px; color: white;"></span>&ensp; Your Ride</a> <a></a>
-		<a href="#"><span class="glyphicon glyphicon-credit-card"
+		<a href="RideCompleted.jsp"><span class="glyphicon glyphicon-credit-card"
 			style="font-size: 30px; color: white;"></span>&ensp; Payment</a> <a></a>
 			
 			
 			
-		<a href="RideHistory.jsp"><span class="glyphicon glyphicon-list"
+		<a href="JSP/RideHistory.jsp"><span class="glyphicon glyphicon-list"
 			style="font-size: 30px; color: white;"></span>&ensp; Rides History</a> <a></a>
 		<a href="WelcomePage.html"><span class="glyphicon glyphicon-off"
 			style="font-size: 30px; color: white;"></span>&ensp; Log Out</a>
@@ -48,14 +48,15 @@
 		<span class="glyphicon glyphicon-map-marker"></span>Cabriolet
 	</div>
 	<hr>
+	
 	<input id="origin-input" class="controls" type="text"
 		placeholder="Enter an origin location">
-	<input id="submit" type="button" class="btn btn-default submit"
-		value="Get Your Current Location">
 	<input id="destination-input" class="controls" type="text"
 		placeholder="Enter a destination location">
 
 	<div id="mode-selector" class="controls">
+		<input id="submit" type="button" class="btn btn-default submit"
+		value="Get Your Current Location">
 		<input type="radio" name="type" id="changemode-walking"> <label
 			for="changemode-walking">Walking</label> <input type="radio"
 			name="type" id="changemode-transit"> <label
@@ -97,7 +98,7 @@
 						<h> Estimated Distance :</h>
 						<input id="distanceEstimate"  name="distanceEstimate" class="control" type="text"
 							placeholder=""><br> &ensp;
-						<h> Estimated Ride Cost :</h>
+						<h> Estimated Ride Cost :(in Rs.)</h>
 						<input id="costEstimate"  name="costEstimate" class="control" type="text"
 							placeholder=""><br> &ensp;
 						<h> Estimated Ride Time :</h>

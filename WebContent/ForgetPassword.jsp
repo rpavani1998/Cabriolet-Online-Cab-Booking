@@ -52,7 +52,7 @@
 		</section>
 
   	<section class="container-footer">
-    	<p align="center">Already a member? <a href="#">Login</a></p>
+    	<p align="center">Already a member? <a href="WelcomePage.html">Login</a></p>
   	</section>
       
 	</section> 

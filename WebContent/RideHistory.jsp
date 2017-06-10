@@ -36,7 +36,7 @@
 				style="font-size: 30px; color: white;"></span>&ensp; Your Account</a> <a></a>
 			<a href="HomePage.jsp"><span class="glyphicon glyphicon-star-empty"
 				style="font-size: 30px; color: white;"></span>&ensp; Your Ride</a> <a></a>
-			<a href="#"><span class="glyphicon glyphicon-credit-card"
+			<a href="RideCompleted.jsp"><span class="glyphicon glyphicon-credit-card"
 				style="font-size: 30px; color: white;"></span>&ensp; Payment</a> <a></a>
 			<a href="RideHistory.jsp"><span class="glyphicon glyphicon-list"
 				style="font-size: 30px; color: white;"></span>&ensp; Rides History</a> <a></a>

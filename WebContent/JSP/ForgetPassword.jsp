@@ -9,7 +9,7 @@
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
-<link rel="stylesheet" href="../CSS/ForgetPassword.css">
+<link rel="stylesheet" href="CSS/ForgetPassword.css">
 <style type="text/css">
 <
 link rel ="stylesheet " href ="//maxcdn.bootstrapcdn.com /font-awesome/4.3.0

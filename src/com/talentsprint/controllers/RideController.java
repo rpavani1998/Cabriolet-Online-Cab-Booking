@@ -60,23 +60,28 @@ public class RideController extends HttpServlet {
 		rideBean.setAmount(Double.parseDouble(request.getParameter("costEstimate")));
 		rideBean.setStatus("Waiting");
 		String val = request.getParameter("type");
+		session.setAttribute("RideBean", rideBean);
 		System.out.println(val);
 		String type = null;
-			if(request.getParameter("type") == "6"){
+			if(val.equals("6")){
 				type = "Micro";
-			}if(val == "8"){
+			}if(val.equals("8")){
 				type = "Mini";
-			}if(val == "18"){
+			}if(val.equals("18")){
 				type ="SUV";
 			}
 			System.out.println(type);
 		rideBean.setCarType(type);
 		try {
 			int flag = RideDAO.bookARide(rideBean);
+			System.out.println(flag);
 			if(flag != -1){
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("../JSP/ConfirmBookingPage.jsp");
+				System.out.println(flag);
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("ConfirmBookingPage.jsp");
+				requestDispatcher.forward(request, response);
 			}else {
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("../JSP/HomePage.jsp");
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("HomePage.jsp");
+				requestDispatcher.forward(request, response);
 			}
 			
 			} catch (SQLException e) {

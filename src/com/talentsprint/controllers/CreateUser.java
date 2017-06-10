@@ -51,22 +51,27 @@ public class CreateUser extends HttpServlet {
 		int result = 0;
 		UserBean user = new UserBean();
 		PrintWriter out = response.getWriter();
-		//if(request.getParameter("password") != request.getParameter("reEnterPassword")){
-			//msgbox("Passwords do not match!!");
-		//}
-		System.out.println(request.getParameter("password") + "" +request.getParameter("reEnterPassword"));
-		user.setFirstName(request.getParameter("firstName"));
-		user.setLastName(request.getParameter("lastName"));
-		user.setEmailId(request.getParameter("emailID"));
-		user.setGender(request.getParameter("gender"));
-		user.setDateOfBirth(request.getParameter("dateOfBirth"));
-		user.setMobileNumber(request.getParameter("mobileNumber"));
-		user.setPassword(request.getParameter("password"));
+		if(request.getParameter("password").equals(request.getParameter("reEnterPassword"))){
+			System.out.println(request.getParameter("password") + "" +request.getParameter("reEnterPassword"));
+			user.setFirstName(request.getParameter("firstName"));
+			user.setLastName(request.getParameter("lastName"));
+			user.setEmailId(request.getParameter("emailID"));
+			user.setGender(request.getParameter("gender"));
+			user.setDateOfBirth(request.getParameter("dateOfBirth"));
+			user.setMobileNumber(request.getParameter("mobileNumber"));
+			user.setPassword(request.getParameter("password"));
 
-		UserDAOImplementation dao = new UserDAOImplementation();
-		result = dao.createUser(user);
-		RequestDispatcher rd = request.getRequestDispatcher("WelcomePage.html");
-		rd.forward(request, response);
+			UserDAOImplementation dao = new UserDAOImplementation();
+			result = dao.createUser(user);
+			RequestDispatcher rd = request.getRequestDispatcher("WelcomePage.html");
+			rd.forward(request, response);
+			
+		}else {
+			msgbox("Passwords do not match!!");
+			RequestDispatcher rd = request.getRequestDispatcher("Register.jsp");
+			rd.forward(request, response);
+		}
+		
 	}
 
 }
