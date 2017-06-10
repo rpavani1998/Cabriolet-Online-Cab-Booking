@@ -25,7 +25,7 @@
 		<section class="container-body" style="padding:40px 30px 40px 30px;">
 	
 				<section class="login-form-1">
-					<form id="forgot-password-form" class="text-left" action="../ForgetPaswordController" method="post">
+					<form id="forgot-password-form" class="text-left" action="ChangePasswordController" method="post">
 
 						<section class="login-form-main-message"></section>
 	
