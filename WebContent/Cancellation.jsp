@@ -47,7 +47,12 @@
 			<a href="WelcomePage.html"><span class="glyphicon glyphicon-off"
 				style="font-size: 30px; color: white;"></span>&ensp; Log Out</a>
 		</div>
+		<sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost/Cabriolet1" user="root" password="rajula" />
 
+	<sql:update dataSource="${dbsource}" var="result">
+            update Ride set status = "Cancelled"  where status ="Waiting" and customerID = <%=session.getAttribute("customerID") %> order by bookingTime desc limit 1;
+        </sql:update>
 		<div id="main">
 			<span style="font-size: 40px; cursor: pointer" onclick="openNav()">&#9776;</span>
 		</div>
@@ -58,59 +63,12 @@
 		<hr>
 	</header>
 	<center>
-		<h>Your Booking has been confirmed! </h>
-		<p>Here are your driver's details:</p>
-	</center>
-	<sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://localhost/Cabriolet1" user="root" password="rajula" />
-
-	<sql:query dataSource="${dbsource}" var="result">
-         select d.firstName,d.lastName,d.emailId,d.phoneNumber,d.gender,d.DOB,d.cabNumber from Driver d where phoneNumber = (select driverId from Ride order by bookingTime desc limit 1);
-         
-        </sql:query>
-	<sql:query dataSource="${dbsource}" var="result1">
-        select c.type,c.name from Cab c where c.cabNumber = (select cabNumber from Driver where phoneNumber = (select driverId from Ride order by bookingTime desc limit 1));
-	     </sql:query>
-
-	<div class="container">
-		<br>
-		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
-				<div class="well well-sm">
-					<div class="row">
-						<div class="col-sm-6 col-md-4">
-							<img src="http://placehold.it/380x500" alt=""
-								class="img-rounded img-responsive" />
-						</div>
-						<div class="col-sm-6 col-md-8">
-							<c:forEach var="row" items="${result.rows}">
-								<h1>
-									<c:out value="${row.firstName}" />
-									<c:out value="${row.lastName}" />
-								</h1>
-								<p1> <i class="glyphicon glyphicon-envelope"></i>
-								<c:out value="${row.emailId}" /> <br>
-								<i class="glyphicon glyphicon-phone"></i>
-								<c:out value="${row.phoneNumber}" /> <br>
-								<i class="glyphicon glyphicon-user"> Male</i> <br>
-								<i class="glyphicon glyphicon-calendar"></i>
-								<c:out value="${row.DOB}" /> <br>
-								<i class="glyphicon glyphicon-edit"></i>${row.cabNumber} <br>
-								</p1>
-							</c:forEach>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<br>
+		<h>Your Booking has been Cancelled!! </h>
 		<center>
-			<p>Enjoy your ride!</p>
-		</center>
-		
-		<form action="Cancellation.jsp" method="post">
-		    <input type="submit" class="btn btn-default submit" value="Cancel Your Ride" />
+			</center>
+		<form action="HomePage.jsp">
+		    <input type="submit" class="btn btn-default submit" value="Book a Cab" />
 		</form>
-		
+	
 </body>
 </html>
