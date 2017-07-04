@@ -81,82 +81,17 @@
 				<div class="loader-circle-2"></div>
 			</div>
 			<div class="needle"></div>
-			<div id="loading" class="loading">Searching...</div>
+			<div id="loading" class="loading">Loading...</div>
 		</div>
 	</div>
-
+<script>
+	function Redirect() {
+        window.location="http://localhost:8080/Cabriolet-Online-Cab-Booking/CheckStatus.jsp";
+     }
+	setTimeout('Redirect()', 1000);
+</script>
 
 </body>
-<script type="text/javascript">
-<%
-	Statement statement;
-	String old_status = null;
-	String customerID = (String) (session.getAttribute("customerID"));
-	Class.forName("com.mysql.jdbc.Driver");
-	Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Cabriolet1","root","rajula");//("jdbc:mysql://192.168.3.247:3306/cabriolet", "srividya",
-	//		"srividyaswamy");
-
-	boolean flag = true;
-
-	try {
-		statement = connection.createStatement();
-		ResultSet resultSet = statement.executeQuery(
-				"select status from Ride where customerId = "+customerID+" order by bookingTime desc LIMIT 1");
-		if (resultSet.next()) {
-			old_status = resultSet.getString(1);
-		}
-	} catch (SQLException e1) {
-		e1.printStackTrace();
-	}
-	long startTime = System.currentTimeMillis();
-	long elapsedTime = 0L;
-	while (flag) {
-		try {
-			statement = connection.createStatement();
-			ResultSet resultSet1 = statement
-					.executeQuery("select status from Ride order by bookingTime desc limit 1 ");
-			if (resultSet1.next()) {
-				System.out.println("Still on.....");
-				String new_status = resultSet1.getString(1);
-				System.out.println(new_status + " " + old_status);
-				if (!new_status.equals(old_status)) {
-					System.out.println("Condition True!!");
-					old_status = new_status;
-					if (old_status.equals("Accepted")) {
-						flag = false;
-					} else if (elapsedTime < 2 * 60 * 1000 || old_status.equals("Rejected")) {
-						flag = false;
-						old_status = "Rejected";
-						
-					}
-				}
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-
-		}
-		elapsedTime = (new Date()).getTime() - startTime;
-
-	}
-%>
-
-function RedirectToRejectionPage() { 
-	window.location= 'JSP/RideRejected.jsp';
-}
-
-function RedirectToConfirmationPage() { 
-	window.location= 'JSP/ConfirmBookingPage.jsp';
-}
-
-<% 
-if (old_status.equals("Rejected")) { 
-    out.print("RedirectToRejectionPage();");
-}else if(old_status.equals("Accepted")){
-	out.print("RedirectToConfirmationPage();");
-}
-%>
-
-
-</script>
 </html>
+
+

@@ -1,4 +1,3 @@
-@CHARSET "UTF-8";
 html, body {
 	height: 100%;
 	margin: 0;
@@ -64,12 +63,13 @@ html, body {
 #details li{
   list-style-type: none;
 	font-family: Cuprum !important;
-	font-size: 17px;
+	font-size: 20px;
 	color: black !important;
 }
 
 ul{
-	padding-left: 15px !important;
+	padding-left: 0px !important;
+	margin-bottom: 26px !important;
 }
 
 hr{
@@ -79,23 +79,41 @@ hr{
 h1{
 	font-family: "Francois One" !important;
 	color: black !important;
+	font-size: 40px !important;
+	margin-top: 10px !important;
 }
 
 .bgimg {
-    background-image: url('Images/backgroundcar.jpg');
+    background-image: url('backgroundcar.jpg');
     min-height: 85%;
     background-position: center;
     background-size: cover; 
-    
-}
-
-
-
-.col-lg-offset-9{
-  background: white;
 }
 
 .media{
 	padding-left: 10px !important;
 	padding-top: 10px !important;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.divider{
+		border-right: 1px solid black;
+}
+
+.col-md-5{
+		height: 80%;
+}
+
+.btn-lg {
+    padding: 10px 40px;
+    font-size: 30px;
+    border-radius: 10px;
+    font-family: ;
+}
+
+.spacing{
+		padding: 90px;
 }

@@ -1,6 +1,7 @@
 package com.talentsprint.controllers;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -10,11 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import com.talentsprint.beans.CabBean;
 import com.talentsprint.beans.RideBean;
 import com.talentsprint.dbconnection.RideDAO;
-import com.talentsprint.dbconnection.RideStatusChecker;
+
 
 /**
  * Servlet implementation class RideController
@@ -49,6 +48,7 @@ public class RideController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		PrintWriter out = response.getWriter();
 		System.out.println("in RideController");
 		HttpSession session = request.getSession();
 		RideBean rideBean = new RideBean();
@@ -77,13 +77,19 @@ public class RideController extends HttpServlet {
 			
 			int flag = RideDAO.bookARide(rideBean);
 			System.out.println(flag);
-			if(flag != -1){
+			if(flag == -1){
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('Sorry! There are no cabs available.Please try later');");
+				out.println("return false;");
+				out.println("</script>");
+				
+				
+			}else  {
 				System.out.println(flag);
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("LoadingPage.jsp");
 				requestDispatcher.forward(request, response);
-			}else {
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("HomePage.jsp");
-				requestDispatcher.forward(request, response);
+				//RequestDispatcher requestDispatcher = request.getRequestDispatcher("HomePage.jsp");
+				//requestDispatcher.forward(request, response);
 			}
 			
 			} catch (SQLException e) {

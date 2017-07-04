@@ -72,7 +72,7 @@ public class UserLoginController extends HttpServlet {
 			} else {
 				out.println("<script type=\"text/javascript\">");
 				out.println("alert('User or password incorrect');");
-				out.println("location='WelcomePage.html';");
+				out.println("return false;");
 				out.println("</script>");
 			}
 		} catch (SQLException e) {

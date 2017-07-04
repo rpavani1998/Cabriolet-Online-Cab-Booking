@@ -28,13 +28,12 @@ public class RideDAO {
 			query.setString(7, type);
 			
 			
-			PreparedStatement query1 = connection.prepareStatement("select phoneNumber from driver where cabNumber = (select distinct(d.cabNumber) from driver d, cab c where d.status = 'available' and c.type = '"+type+"') LIMIT 1");
+			PreparedStatement query1 = connection.prepareStatement("select phoneNumber from Driver where cabNumber = (select distinct(d.cabNumber) from Driver d, Cab c where d.status = 'available' and c.type = '"+type+"') LIMIT 1");
 			ResultSet resultSet = query1.executeQuery();
 			if(resultSet.next()){
 				System.out.println(resultSet.getString(1));
 				query.setString(1, resultSet.getString(1));
 			} else {
-				msgbox("Sorry! There are no cabs available.Please try later");
 				return -1;
 			}
 			
@@ -46,9 +45,6 @@ public class RideDAO {
 		return result;
 	}
 
-	private static void msgbox(String string) {
-		JOptionPane.showMessageDialog(null, string);
-		
-	}
+	
 	
 }
