@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.talentsprint.beans.CabBean;
 import com.talentsprint.beans.RideBean;
 import com.talentsprint.dbconnection.RideDAO;
+import com.talentsprint.dbconnection.RideStatusChecker;
 
 /**
  * Servlet implementation class RideController
@@ -73,11 +74,12 @@ public class RideController extends HttpServlet {
 			System.out.println(type);
 		rideBean.setCarType(type);
 		try {
+			
 			int flag = RideDAO.bookARide(rideBean);
 			System.out.println(flag);
 			if(flag != -1){
 				System.out.println(flag);
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("ConfirmBookingPage.jsp");
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("LoadingPage.jsp");
 				requestDispatcher.forward(request, response);
 			}else {
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("HomePage.jsp");

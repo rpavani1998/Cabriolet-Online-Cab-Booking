@@ -6,8 +6,9 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.*"%>
-
-
+<%@page import="com.talentsprint.classes.*"%>
+<%@page import="javax.script.*"%>
+<%@page import="java.util.Date"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,6 +28,7 @@
 </head>
 
 <body>
+
 	<header>
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -55,6 +57,7 @@
 
 
 
+
 	<div id="loader-wrapper">
 		<div class="loader">
 			<div class="line"></div>
@@ -77,75 +80,78 @@
 	</div>
 
 
+	<%
+		Statement statement;
+		String old_status = null;
 
-<%
+		Class.forName("com.mysql.jdbc.Driver");
 
-Statement statement;
-String old_status = null;
+		Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.3.247:3306/cabriolet", "srividya",
+				"srividyaswamy");
 
-Class.forName("com.mysql.jdbc.Driver");
+		boolean flag = true;
 
-Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.3.247:3306/cabriolet", "srividya", "srividyaswamy");
-
-
-try {
-	statement = connection.createStatement();
-	ResultSet resultSet = statement.executeQuery("select status from ride where customerId = '7207874257' order by bookingTime desc LIMIT 1");
-	if (resultSet.next()) {
-		old_status = resultSet.getString(1);
-	}
-} catch (SQLException e1) {
-	e1.printStackTrace();
-}
-	try {
-		statement = connection.createStatement();
-		ResultSet resultSet1 = statement.executeQuery("select status from ride order by bookingTime desc limit 1 ");
-		if (resultSet1.next()) {
-			out.println("<div id='loading'>Loading</div>");
-			System.out.println("Still on.....");
-			String new_status = resultSet1.getString(1);
-			System.out.println(new_status+" "  + old_status);
-			if (!new_status.equals(old_status)) {
-				System.out.println("Condition True!!");
-				old_status = new_status;
-				if(old_status.equals("Accepted")){
-					System.out.println("Accepted!!");
-					//SendRequestToJSP.sendRequestTo("http://localhost:8080/Cabriolet-Online-Cab-Booking/CancellationController");
-				}
+		try {
+			statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(
+					"select status from ride where customerId = '7207874257' order by bookingTime desc LIMIT 1");
+			if (resultSet.next()) {
+				old_status = resultSet.getString(1);
 			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
 		}
-	
-	} catch (SQLException e) {
-		e.printStackTrace();
+		long startTime = System.currentTimeMillis();
+		long elapsedTime = 0L;
+		while (flag) {
+			try {
+				statement = connection.createStatement();
+				ResultSet resultSet1 = statement
+						.executeQuery("select status from ride order by bookingTime desc limit 1 ");
+				if (resultSet1.next()) {
+					System.out.println("Still on.....");
+					String new_status = resultSet1.getString(1);
+					System.out.println(new_status + " " + old_status);
+					if (!new_status.equals(old_status)) {
+						System.out.println("Condition True!!");
+						old_status = new_status;
+						if (old_status.equals("Accepted")) {
+							System.out.println("Accepted!!");
+							 ScriptEngineManager manager = new ScriptEngineManager();
+						     ScriptEngine engine = manager.getEngineByName("JavaScript");
+						     String script = "function Redirect() { window.location= 'http://localhost:8080/Cabriolet-Online-Cab-Booking/ConfirmBookingPage.jsp';}";
+						     engine.eval(script);
+						     Invocable inv = (Invocable) engine;
+						     inv.invokeFunction("Redirect");
+						     flag = false;
+						}else if(elapsedTime < 2*60*1000 || old_status.equals("Rejected")){
+							 ScriptEngineManager manager = new ScriptEngineManager();
+						     ScriptEngine engine = manager.getEngineByName("JavaScript");
+						     String script = "function Redirect() { window.location= 'http://localhost:8080/Cabriolet-Online-Cab-Booking/CancellationPage.jsp';}";
+						     engine.eval(script);
+						     Invocable inv = (Invocable) engine;
+						     inv.invokeFunction("Redirect");
+						     flag = false;
+						}
+					}
+				}
 
-	}
+			} catch (SQLException e) {
+				e.printStackTrace();
 
+			}
+			 elapsedTime = (new Date()).getTime() - startTime;
+			
+		}
 
-
-
-%>
+	%>
 
 
 	<script>
-var myVar = setInterval(checkBookingStatus, 5000)
-
-
-function checkBookingStatus() {
-	var xhttp = new XMLHttpRequest();
-	xhttp.onreadystatechange = function() {
-		if(this.readyState == 4 && this.status == 200) {
-			var resp = this.responseText;
-			
-			document.getElementById("loading").innerHTML = resp;
-			if(resp == "Accepted") {
-				xhttp.open("GET","ConfirmBookingPage.jsp",true);
-				xhttp.send();
-				clearInterval(myVar);
-			}
-		}
-		};
-	
-}
+	function Redirect() {
+        window.location="http://localhost:8080/Cabriolet-Online-Cab-Booking/ConfirmBookingPage.jsp";
+     }
+	setTimeout('Redirect()', 10000);
 </script>
 
 </body>

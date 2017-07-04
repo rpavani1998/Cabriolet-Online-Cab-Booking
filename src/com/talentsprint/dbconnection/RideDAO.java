@@ -4,16 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+
 
 import javax.swing.JOptionPane;
 
 import com.talentsprint.beans.RideBean;
 
 public class RideDAO {
-	ConnectionFactory connectionFactory = new ConnectionFactory();
-	Connection con = connectionFactory.getConnection();
-
+	
 	public static int bookARide(RideBean rideBean) throws SQLException {
 		int result = 0;
 		try {
@@ -30,7 +28,7 @@ public class RideDAO {
 			query.setString(7, type);
 			
 			
-			PreparedStatement query1 = connection.prepareStatement("select phoneNumber from Driver where cabNumber = (select distinct(d.cabNumber) from Driver d, Cab c where d.status = 'Available' and c.type = '"+type+"')");
+			PreparedStatement query1 = connection.prepareStatement("select phoneNumber from driver where cabNumber = (select distinct(d.cabNumber) from driver d, cab c where d.status = 'available' and c.type = '"+type+"') LIMIT 1");
 			ResultSet resultSet = query1.executeQuery();
 			if(resultSet.next()){
 				System.out.println(resultSet.getString(1));
@@ -52,5 +50,5 @@ public class RideDAO {
 		JOptionPane.showMessageDialog(null, string);
 		
 	}
-
+	
 }

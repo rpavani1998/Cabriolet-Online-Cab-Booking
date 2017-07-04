@@ -66,7 +66,7 @@ public class UserLoginController extends HttpServlet {
 		try {
 			boolean result = loginDAO.validate(phoneNumber, password);
 			if (result) {
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("HomePage.jsp");
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("SelectionPage.jsp");
 				requestDispatcher.forward(request, response);
 
 			} else {
