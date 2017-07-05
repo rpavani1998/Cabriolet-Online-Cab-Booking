@@ -3,6 +3,7 @@ package com.talentsprint.controllers;
 import java.io.IOException;
 
 import javax.mail.Session;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,8 +47,12 @@ public class ChangePasswordController extends HttpServlet {
 		String newPassword = request.getParameter("password1");
 		String reEnterPassword = request.getParameter("password2");
 		String userId = (String)session.getAttribute("UserId");
+		System.out.println(userId+ "" + newPassword + ""+ reEnterPassword);
 		if(newPassword.equals(reEnterPassword)){
+			System.out.println("1111" + newPassword + ""+ reEnterPassword);
 			userDAO.changePassword(userId, verificationCode, newPassword);
+			RequestDispatcher rd = request.getRequestDispatcher("WelcomePage.html");
+			rd.forward(request, response);
 		}else{
 			userDAO.msgbox("Passwords do not match!!");
 		}

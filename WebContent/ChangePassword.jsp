@@ -33,15 +33,15 @@
 							<div class="login-group">
 								<div class="form-group">
 									<label for="verificationCode"><span class="glyphicon glyphicon-asterisk"></span> Verification Code (sent to your registered E-mail ID)</label>
-									<input type="text" class="form-control" id="verificationCode" name="verificationCode" placeholder=" Enter verificationCode">
+									<input type="text" class="form-control"  name="verificationCode" placeholder=" Enter verificationCode">
 									<br>
 									<section class="form-group">
 	          				<label for="password1"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-	          				<input type="password" class="form-control" id="password1" required="" placeholder=" Enter Password">
+	          				<input type="password" class="form-control" name="password1" required="" placeholder=" Enter Password">
 	        				</section>
 									<section class="form-group">
 										<label for="password2"><span class="glyphicon glyphicon-eye-open"></span> Re-enter Password</label>
-										<input type="password" class="form-control" id="password2" required="" placeholder=" Re-enter Password">
+										<input type="password" class="form-control" name="password2" required="" placeholder=" Re-enter Password">
 									</section>
 								</div>
 								<button type="submit" class="btn btn-basic btn-block"><span class="glyphicon glyphicon-ok"></span> Submit</button>

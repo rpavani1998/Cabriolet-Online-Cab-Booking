@@ -11,10 +11,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="CSS/ForgetPassword.css">
-<script src="JS/ForgetPassword.js"></script>
 
 </head>
-
 <body>
 
 <section class="bgimg w3-display-container w3-text-black "> 
