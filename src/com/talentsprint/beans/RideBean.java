@@ -1,4 +1,4 @@
-package com.talentsprint.beans;
+ package com.talentsprint.beans;
 
 public class RideBean {
 	String source;
@@ -8,6 +8,7 @@ public class RideBean {
 	Double amount;
 	String status;
 	String carType;
+	String FriendMobileNumber,FriendName;
 
 	public String getStatus() {
 		return status;
@@ -52,6 +53,21 @@ public class RideBean {
 	public String getDriverId() {
 		return driverId;
 	}
+	public String getFriendMobileNumber() {
+		return FriendMobileNumber;
+	}
+
+	public void setFriendMobileNumber(String FriendMobileNumber) {
+		this.FriendMobileNumber = FriendMobileNumber;
+	}
+	public String getFriendName() {
+		return FriendName;
+	}
+
+	public void setFriendName(String FriendName) {
+		this.FriendName = FriendName;
+	}
+
 
 	public void setDriverId(String driverId) {
 		this.driverId = driverId;

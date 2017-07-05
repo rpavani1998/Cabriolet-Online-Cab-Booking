@@ -7,7 +7,7 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.*"%>
-<%@page import="com.talentsprint.classes.*"%>
+
 <%@page import="javax.script.*"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.io.Reader"%>
@@ -50,11 +50,9 @@
 			ResultSet resultSet1 = statement
 					.executeQuery("select status from Ride order by bookingTime desc limit 1 ");
 			if (resultSet1.next()) {
-				System.out.println("Still on.....");
 				String new_status = resultSet1.getString(1);
-				System.out.println(new_status + " " + old_status);
+				
 				if (!new_status.equals(old_status)) {
-					System.out.println("Condition True!!");
 					old_status = new_status;
 					if (old_status.equals("Accepted")) {
 						flag = false;

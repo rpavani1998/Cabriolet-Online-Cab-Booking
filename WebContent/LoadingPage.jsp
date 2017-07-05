@@ -6,7 +6,6 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.*"%>
-<%@page import="com.talentsprint.classes.*"%>
 <%@page import="javax.script.*"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.io.Reader"%>
