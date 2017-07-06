@@ -85,11 +85,10 @@ public class RideController extends HttpServlet {
 			System.out.println(flag);
 			if(flag == -1){
 				out.println("<script type=\"text/javascript\">");
-				out.println("alert('Sorry! There are no cabs available.Please try later');");
-				out.println("return false;");
+				out.println("alert('No Cabs Available');");
+				out.println("location='HomePage.jsp';");
 				out.println("</script>");
-				
-				
+							
 			}else  {
 				System.out.println(flag);
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("LoadingPage.jsp");

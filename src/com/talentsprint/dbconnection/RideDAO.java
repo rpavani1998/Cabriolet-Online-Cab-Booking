@@ -1,5 +1,6 @@
 package com.talentsprint.dbconnection;
 
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
@@ -47,14 +48,14 @@ public class RideDAO {
 			}
 			
 			
-			PreparedStatement query1 = connection.prepareStatement("select phoneNumber from Driver where cabNumber = (select distinct(d.cabNumber) from Driver d, Cab c where d.status = 'available' and c.type = '"+type+"' order by RAND() LIMIT 1 )");
+			PreparedStatement query1 = connection.prepareStatement("select phoneNumber from Driver where cabNumber = (select distinct(d.cabNumber) from driver d, cab c where d.status = 'available' and c.type = '"+type+"' order by RAND() LIMIT 1 )");
 			ResultSet resultSet = query1.executeQuery();
 			
 			if(resultSet.next()){
 				System.out.println(resultSet.getString(1));
 				query.setString(1, resultSet.getString(1));
 			} else {
-				msgbox("Sorry! There are no cabs available.Please try later");
+				
 				return -1;
 			}
 			
@@ -66,9 +67,6 @@ public class RideDAO {
 		return result;
 	}
 
-	private static void msgbox(String string) {
-		JOptionPane.showMessageDialog(null, string);
-		
-	}
+	
 	
 }

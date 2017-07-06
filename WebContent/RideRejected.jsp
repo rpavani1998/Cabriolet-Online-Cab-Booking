@@ -43,8 +43,8 @@
 				style="font-size: 30px; color: white;"></span>&ensp; Log Out</a>
 		</div>
 		<sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://localhost/Cabriolet1" user="root" password="rajula" />
-
+		url="jdbc:mysql://192.168.3.247:3306/cabriolet" user="srividya"
+		password="srividyaswamy" />
 	<sql:update dataSource="${dbsource}" var="result">
             update Ride set status = "Rejected"  where status ="Waiting" and customerID = <%=session.getAttribute("customerID") %> order by bookingTime desc limit 1;
         </sql:update>

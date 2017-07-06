@@ -27,7 +27,7 @@
 	String old_status = null;
 	String customerID = (String) (session.getAttribute("customerID"));
 	Class.forName("com.mysql.jdbc.Driver");
-	Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Cabriolet1","root","rajula");//
+	Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.3.247:3306/cabriolet", "srividya", "srividyaswamy");//("jdbc:mysql://localhost:3306/Cabriolet1","root","rajula");//
 	//	("jdbc:mysql://192.168.3.247:3306/cabriolet", "srividya","srividyaswamy");//	
 
 	boolean flag = true;
@@ -60,7 +60,7 @@
 						flag = false;
 									
 					}
-				}else if(elapsedTime > 1 * 60 * 1000 ){
+				}else if(elapsedTime > 2 * 60 * 1000 ){
 					flag = false;
 					old_status = "Rejected";
 					

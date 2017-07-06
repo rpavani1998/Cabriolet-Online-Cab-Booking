@@ -74,24 +74,13 @@ public class UserLoginController extends HttpServlet {
 				requestDispatcher.forward(request, response);
 
 			} else {
-				 ScriptEngineManager manager = new ScriptEngineManager();
-			        ScriptEngine engine = manager.getEngineByName("javaScript");
-			 
-			        String script = "function Alert(){alert('Please enter a subject!'); return false;}";
-			        engine.eval(script);
-			 
-			        Invocable inv = (Invocable) engine;
-			 
-			       inv.invokeFunction("Alert");
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('User or password incorrect');");
+				out.println("location='WelcomePage.html';");
+				out.println("</script>");
 				
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ScriptException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

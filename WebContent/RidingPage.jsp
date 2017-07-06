@@ -15,9 +15,9 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="JS/RideHistory.js"></script>
-<title>Insert title here</title>
+<title>Riding..</title>
 </head>
-<body style = "background-color: #e6e6e6;">
+<body style = "background-color: black;">
 	<header>
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -46,7 +46,7 @@
 	</div>
 	
 	</header>
-	<div class="bgimg"><center><h1>Riding....</h1></center></div>
+	<div class="bgimg" style= "color:white"><center><h1>Riding....</h1></center></div>
 
 <script>
 	function Redirect() {

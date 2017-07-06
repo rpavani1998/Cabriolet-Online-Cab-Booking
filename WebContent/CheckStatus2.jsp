@@ -27,7 +27,7 @@
 	String old_status = null;
 	String customerID = (String) (session.getAttribute("customerID"));
 	Class.forName("com.mysql.jdbc.Driver");
-	Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Cabriolet1","root","rajula");//
+	Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.3.247:3306/cabriolet", "srividya", "srividyaswamy");//("jdbc:mysql://localhost:3306/Cabriolet1","root","rajula");//
 	//	("jdbc:mysql://192.168.3.247:3306/cabriolet", "srividya","srividyaswamy");//	
 
 	boolean flag = true;
@@ -58,7 +58,7 @@
 						flag = false;
 					}else if (old_status.equals("Completed")) {
 						flag = false;
-					}else if (old_status.equals("Started")) {
+					}else if (old_status.equals("Driving")) {
 						flag = false;
 					} 
 				}
@@ -90,7 +90,7 @@ if (old_status.equals("Rejected")) {
     out.print("RedirectToRejectionPage();");
 }else if(old_status.equals("Accepted")){
 	out.print("RedirectToConfirmationPage();");
-}else if(old_status.equals("Started")){
+}else if(old_status.equals("Driving")){
 	out.print("RedirectToRideStartedPage();");
 }else if(old_status.equals("Completed")){
 	out.print("RedirectToRideCompletedPage();");

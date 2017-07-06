@@ -11,12 +11,21 @@ h {
 	color: black !important;
 }
 
+h1{
+	font-size: 200px;
+	font-family: "Carter One" !important;
+	text-align: center;
+	color: white !important;
+	margin: 0px !important;
+	padding-top: 20px;
+}
+
 #main{
 	transition: margin-right .5s; 
 	color: white;
 }
 .bgimg {
-	background-image: url('Images/riding.gif');
+	background-image: url('Images/gif11.gif');
 	min-height: 80%;
 	background-position: center;
 	background-size: cover;

@@ -58,9 +58,9 @@
 		<hr>
 	</header>
 	<sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://localhost/Cabriolet1" user="root" password="rajula" />
-	<!-- url="jdbc:mysql://192.168.3.247:3306/cabriolet" user="srividya"
-		password="srividyaswamy" /> -->
+		url="jdbc:mysql://192.168.3.247:3306/cabriolet" user="srividya"
+		password="srividyaswamy"/>
+	
 
 	<sql:query dataSource="${dbsource}" var="result">
             SELECT * from Ride where customerID = <%=session.getAttribute("customerID")%> order by bookingTime desc ;

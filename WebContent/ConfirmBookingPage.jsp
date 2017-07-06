@@ -63,9 +63,10 @@
 		<p>Here are your driver's details:</p>
 	</center>
 	<sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
-	url="jdbc:mysql://localhost/Cabriolet1" user="root" password="rajula" />
-		<!-- url="jdbc:mysql://192.168.3.247:3306/cabriolet" user="srividya"
-		password="srividyaswamy" /> -->
+	 url="jdbc:mysql://192.168.3.247:3306/cabriolet" user="srividya"
+		password="srividyaswamy" />
+	
+		<!-- url="jdbc:mysql://localhost/Cabriolet1" user="root" password="rajula" />-->
 <%System.out.print("Inside"); %>
 	<sql:query dataSource="${dbsource}" var="result">
          select d.firstName,d.lastName,d.emailId,d.phoneNumber,d.gender,d.DOB,d.cabNumber from Driver d where phoneNumber = (select driverId from Ride order by bookingTime desc limit 1);
@@ -111,9 +112,9 @@
 			<p>Enjoy your ride!</p>
 		</center>
 		
-		<form action="Cancellation.jsp" method="post">
+	<!-- <form action="Cancellation.jsp" method="post">
 		    <input type="submit" class="btn btn-default submit" value="Cancel Your Ride" />
-		</form>
+		</form> -->
 <script>
 	function Redirect() {
         window.location="http://localhost:8080/Cabriolet-Online-Cab-Booking/CheckStatus2.jsp";

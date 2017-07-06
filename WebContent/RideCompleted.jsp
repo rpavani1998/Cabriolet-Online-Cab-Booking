@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
     <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +17,11 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="JS/RideCompleted.js"></script>
+	<script>
+	function Redirect() {
+        window.location="http://localhost:8080/Cabriolet-Online-Cab-Booking/RideHistory.jsp";
+     }
+	</script>
 </head>
 
 <body >
@@ -41,9 +47,9 @@
 		</a>
 		</div>	<hr>
 <sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://localhost/Cabriolet1" user="root" password="rajula" />
-		<!-- url="jdbc:mysql://192.168.3.247:3306/cabriolet" user="srividya"
-		password="srividyaswamy" /> -->
+		url="jdbc:mysql://192.168.3.247:3306/cabriolet" user="srividya"
+		password="srividyaswamy" /> 	<!--url="jdbc:mysql://localhost/Cabriolet1" user="root" password="rajula" />
+	 -->
 
 	<sql:query dataSource="${dbsource}" var="result">
             SELECT source,destination,amount from Ride where customerId  = <%=session.getAttribute("customerID")%> order by bookingTime desc limit 1;
@@ -55,31 +61,35 @@
 	<div class="route">
 		<div class="col-lg-6 text-left">
 			<div class="source">
-				<h1> Source:<c:out value="${row.source}" /></h1>
+				<h1> Source:
+				<c:out value="${row.source}" /></h1>
 			</div>
 		</div>
 		<div class="col-lg-6 text-right">   
   		<div class="destination">
-				<h2> Destination:<c:out value="${row.destination}" /></h2>
+				<h2> Destination:
+				<c:out value="${row.destination}" /></h2>
 			</div>
 		</div>
 	</div>
-	<br>
-	<p>Your bill is: <c:out value="${row.amount}" />
-	</p>
+	<br><br><br>
+	<p><br><br>Your bill is:
+	<br>	</p>
+	
+	<p style="font-size: 50px">&#8377;<c:out value="${row.amount}" /></p> 
 	</c:forEach>
-	<p style="font-size: 50px">&#8377;</p>
 	<br>
 	<div class="container">
 		<div class="row lead">
     <div class="col-md-6 col-md-offset-3" style="text-align: center; font-size: 30px">
         <div id="stars" class="starrr"></div>
         You've rated us <span id="count">0</span> star(s)
+        
 		</div>
 		</div>
 	</div>
 	<center>
-	<button type="button" class="btn btn-default submit"> Submit</button>
+	<button type="button" class="btn btn-default submit" > <a href="RideHistory.jsp" style ="color:white">Submit</a></button>
 	</center>
 
 </body>
