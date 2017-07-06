@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -21,7 +21,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <script type="text/javascript" defer>
-
+	
 <%
 	Statement statement;
 	String old_status = null;
@@ -42,8 +42,6 @@
 	} catch (SQLException e1) {
 		e1.printStackTrace();
 	}
-	long startTime = System.currentTimeMillis();
-	long elapsedTime = 0L;
 	while (flag) {
 		try {
 			statement = connection.createStatement();
@@ -58,41 +56,47 @@
 						flag = false;
 					} else if (old_status.equals("Rejected")) {
 						flag = false;
-									
-					}
-				}else if(elapsedTime > 1 * 60 * 1000 ){
-					flag = false;
-					old_status = "Rejected";
-					
+					}else if (old_status.equals("Completed")) {
+						flag = false;
+					}else if (old_status.equals("Started")) {
+						flag = false;
+					} 
 				}
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 
 		}
-		elapsedTime = (new Date()).getTime() - startTime;
-
 	}
+
 %>
+	function RedirectToRejectionPage() {
+		window.location = 'RideRejected.jsp';
+	}
 
-function RedirectToRejectionPage() { 
-	window.location= 'RideRejected.jsp';
-}
+	function RedirectToConfirmationPage() {
+		window.location = 'ConfirmBookingPage.jsp';
+	}
 
-function RedirectToConfirmationPage() { 
-	window.location= 'ConfirmBookingPage.jsp';
-}
-
+	function RedirectToRideCompletedPage() {
+		window.location = 'RideCompleted.jsp';
+	}
+	
+	function RedirectToRideStartedPage() {
+		window.location = 'RidingPage.jsp';
+	}
 <% 
 if (old_status.equals("Rejected")) { 
     out.print("RedirectToRejectionPage();");
 }else if(old_status.equals("Accepted")){
 	out.print("RedirectToConfirmationPage();");
+}else if(old_status.equals("Started")){
+	out.print("RedirectToRideStartedPage();");
+}else if(old_status.equals("Completed")){
+	out.print("RedirectToRideCompletedPage();");
 }
 %>
-
-
+	
 </script>
 </head>
 <body>

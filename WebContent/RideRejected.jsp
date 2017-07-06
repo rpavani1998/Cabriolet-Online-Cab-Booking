@@ -37,12 +37,7 @@
 			<br> <a href="UserProfile.jsp"><span
 				class="glyphicon glyphicon-user"
 				style="font-size: 30px; color: white;"></span>&ensp; Your Account</a> <a></a>
-			<a href="HomePage.jsp"><span
-				class="glyphicon glyphicon-star-empty"
-				style="font-size: 30px; color: white;"></span>&ensp; Your Ride</a> <a></a>
-			<a href="RideCompleted.jsp"><span class="glyphicon glyphicon-credit-card"
-				style="font-size: 30px; color: white;"></span>&ensp; Payment</a> <a></a>
-			<a href="RideHistory.jsp"><span class="glyphicon glyphicon-list"
+				<a href="RideHistory.jsp"><span class="glyphicon glyphicon-list"
 				style="font-size: 30px; color: white;"></span>&ensp; Rides History</a> <a></a>
 			<a href="WelcomePage.html"><span class="glyphicon glyphicon-off"
 				style="font-size: 30px; color: white;"></span>&ensp; Log Out</a>
@@ -51,25 +46,25 @@
 		url="jdbc:mysql://localhost/Cabriolet1" user="root" password="rajula" />
 
 	<sql:update dataSource="${dbsource}" var="result">
-            update Ride set status = "Cancelled"  where customerID = <%=session.getAttribute("customerID") %> order by bookingTime desc limit 1;
+            update Ride set status = "Rejected"  where status ="Waiting" and customerID = <%=session.getAttribute("customerID") %> order by bookingTime desc limit 1;
         </sql:update>
 		<div id="main">
 			<span style="font-size: 40px; cursor: pointer" onclick="openNav()">&#9776;</span>
 		</div>
 
-		<div id="title" style="cursor: pointer" onclick="">
-			<a href="SelectionPage.jsp" style="color:white"><span class="glyphicon glyphicon-map-marker"></span>Cabriolet
-		</a>
+
+		<div id="title" style="cursor: pointer" onclick="HomePage.jsp">
+			<span class="glyphicon glyphicon-map-marker"></span>Cabriolet
 		</div>
 		<hr>
 	</header>
 	<center>
-		<h>Your Booking has been Cancelled!! </h>
-		<center>
-			</center>
-		<form action="HomePage.jsp">
-		    <input type="submit" class="btn btn-default submit" value="Book a Cab" />
-		</form>
-	
+	<br><br><br>
+	<div id="hello">
+		<h1><h>Sorry! :(</h></h1>
+		<h2>Your request has been rejected by the driver...</h2>
+		<h2>Please <a href = SelectionPage.jsp>Click Here to Book again</a></h2>
+		</center>
+	</div>
 </body>
 </html>

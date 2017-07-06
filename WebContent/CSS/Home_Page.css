@@ -149,6 +149,13 @@ span.tab-space {
 	color: white;
 }
 
+#home {
+	
+	padding: 16px;
+	float: left;
+	color: white;
+}
+
 #title {
 	font-family: "Allerta Stencil", Sans-serif;
 	font-size: 50px;

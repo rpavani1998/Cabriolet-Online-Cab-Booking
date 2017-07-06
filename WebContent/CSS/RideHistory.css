@@ -11,6 +11,16 @@ h {
 	color: black !important;
 }
 
+#main{
+	transition: margin-right .5s; 
+	color: white;
+}
+.bgimg {
+	background-image: url('Images/riding.gif');
+	min-height: 80%;
+	background-position: center;
+	background-size: cover;
+}
 .sidenav {
 	height: 100%;
 	width: 0;
@@ -85,6 +95,13 @@ h {
 	text-align: center;
 	background-color: #424242;
 	color: white;
+}
+h1{
+	font-size: 200px;
+	font-family: "Convergence" ,Bold !important;
+	text-align: center;
+	color: black;
+
 }
 
 

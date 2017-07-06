@@ -25,29 +25,30 @@
 	
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-		<br> <a href="JSP/UserProfile.jsp"><span
+		<br> <a href="UserProfile.jsp"><span
 			class="glyphicon glyphicon-user"
 			style="font-size: 30px; color: white;"></span>&ensp; Your Account</a> <a></a>
 		<a href="HomePage.jsp"><span class="glyphicon glyphicon-star-empty"
 			style="font-size: 30px; color: white;"></span>&ensp; Your Ride</a> <a></a>
-		<a href="RideCompleted.jsp"><span class="glyphicon glyphicon-credit-card"
-			style="font-size: 30px; color: white;"></span>&ensp; Payment</a> <a></a>
+		
 			
 			
-			
-		<a href="JSP/RideHistory.jsp"><span class="glyphicon glyphicon-list"
+		<a href="RideHistory.jsp"><span class="glyphicon glyphicon-list"
 			style="font-size: 30px; color: white;"></span>&ensp; Rides History</a> <a></a>
 		<a href="WelcomePage.html"><span class="glyphicon glyphicon-off"
 			style="font-size: 30px; color: white;"></span>&ensp; Log Out</a>
 	</div>
-
+	
+	
+	
 	<div id="main">
 		<span style="font-size: 40px; cursor: pointer" onclick="openNav()">&#9776;</span>
 	</div>
 
-	<div id="title" style="cursor: pointer" onclick="#">
-		<span class="glyphicon glyphicon-map-marker"></span>Cabriolet
-	</div>
+	<div id="title" style="cursor: pointer" onclick="">
+			<a href="SelectionPage.jsp" style="color:white"><span class="glyphicon glyphicon-map-marker"></span>Cabriolet
+		</a>
+		</div>
 	<hr>
 	
 	<input id="origin-input" class="controls" type="text"
@@ -81,10 +82,10 @@
 						<br> &ensp;
 						<h>Source:</h>
 						<span class="tab-space"></span> <input name="source"  id ="source" class="control"
-							type="text" placeholder="Your Source"><br> &ensp;
+							type="text" placeholder="Your Source" required title="Enter Source"><br> &ensp;
 						<h>Destination:</h>
 						<span class="tab-space"></span> <input name="destination" id="destination"
-							class="control" type="text" placeholder="Your Destination">
+							class="control" type="text" placeholder="Your Destination" title="Enter Destination">
 						<br> &ensp;
 						<h>Car Type:</h>
 						&ensp;&ensp; <select class="selectpicker show-tick"
@@ -98,13 +99,13 @@
 						&ensp; <br> <br> &ensp;
 						<h> Estimated Distance :</h>
 						<input id="distanceEstimate"  name="distanceEstimate" class="control" type="text"
-							placeholder=""><br> &ensp;
+							placeholder="" required title="Click Estimate Ride"><br> &ensp;
 						<h> Estimated Ride Cost :(in Rs.)</h>
 						<input id="costEstimate"  name="costEstimate" class="control" type="text"
-							placeholder=""><br> &ensp;
+							placeholder="" required title="Click Estimate Ride"><br> &ensp;
 						<h> Estimated Ride Time :</h>
 						<input id="timeEstimate" class="control" type="text"
-							placeholder=""> &ensp; <br> <span class="tab-space"></span>
+							placeholder="" required title="Click Estimate Ride"> &ensp; <br> <span class="tab-space"></span>
 						<button type="submit" class="btn btn-default submit">
 							Confirm Your Ride</button>
 					</div>

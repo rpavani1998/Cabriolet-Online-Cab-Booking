@@ -36,28 +36,38 @@
 		<span style="font-size: 40px; cursor: pointer" onclick="openNav()">&#9776;</span>
 	</div>
 
-	<div id="title" style="cursor: default">
-		<span class="glyphicon glyphicon-map-marker"></span>Cabriolet
-	</div>
-	<hr>
+	<div id="title" style="cursor: pointer" onclick="">
+			<a href="SelectionPage.jsp" style="color:white"><span class="glyphicon glyphicon-map-marker"></span>Cabriolet
+		</a>
+		</div>	<hr>
+<sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost/Cabriolet1" user="root" password="rajula" />
+		<!-- url="jdbc:mysql://192.168.3.247:3306/cabriolet" user="srividya"
+		password="srividyaswamy" /> -->
 
+	<sql:query dataSource="${dbsource}" var="result">
+            SELECT source,destination,amount from Ride where customerId  = <%=session.getAttribute("customerID")%> order by bookingTime desc limit 1;
+     </sql:query>
 	<center>
 	<h>Your Ride has been completed!</h>
 	</center>
+	<c:forEach var="row" items="${result.rows}">
 	<div class="route">
 		<div class="col-lg-6 text-left">
 			<div class="source">
-				<h1> Source:</h1>
+				<h1> Source:<c:out value="${row.source}" /></h1>
 			</div>
 		</div>
 		<div class="col-lg-6 text-right">   
   		<div class="destination">
-				<h2> Destination:</h2>
+				<h2> Destination:<c:out value="${row.destination}" /></h2>
 			</div>
 		</div>
 	</div>
 	<br>
-	<p>Your bill is:</p>
+	<p>Your bill is: <c:out value="${row.amount}" />
+	</p>
+	</c:forEach>
 	<p style="font-size: 50px">&#8377;</p>
 	<br>
 	<div class="container">
@@ -71,5 +81,6 @@
 	<center>
 	<button type="button" class="btn btn-default submit"> Submit</button>
 	</center>
+
 </body>
 </html>

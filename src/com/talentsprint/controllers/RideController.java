@@ -62,6 +62,12 @@ public class RideController extends HttpServlet {
 		rideBean.setStatus("Waiting");
 		String val = request.getParameter("type");
 		session.setAttribute("RideBean", rideBean);
+		String riderName = (String) (session.getAttribute("F_Name"));
+		String riderNumber = (String) (session.getAttribute("F_MobileNumber1"));
+	    
+		rideBean.setFriendName(riderName);
+		System.out.println(riderName);
+		rideBean.setFriendMobileNumber(riderNumber);
 		System.out.println(val);
 		String type = null;
 			if(val.equals("6")){

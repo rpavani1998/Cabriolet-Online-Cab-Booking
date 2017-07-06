@@ -31,8 +31,7 @@
 			<a href="HomePage.jsp"><span
 				class="glyphicon glyphicon-star-empty"
 				style="font-size: 30px; color: white;"></span>&ensp; Your Ride</a> <a></a>
-			<a href="#"><span class="glyphicon glyphicon-credit-card"
-				style="font-size: 30px; color: white;"></span>&ensp; Payment</a> <a></a>
+			
 			<a href="RideHistory.jsp"><span class="glyphicon glyphicon-list"
 				style="font-size: 30px; color: white;"></span>&ensp; Rides History</a> <a></a>
 			<a href="WelcomePage.html"><span class="glyphicon glyphicon-off"
@@ -43,16 +42,18 @@
 			<span style="font-size: 40px; cursor: pointer" onclick="openNav()">&#9776;</span>
 		</div>
 
-		<div id="title" style="cursor: pointer" onclick="#">
-			<span class="glyphicon glyphicon-map-marker"></span>Cabriolet
+		<div id="title" style="cursor: pointer" onclick="">
+			<a href="SelectionPage.jsp" style="color:white"><span class="glyphicon glyphicon-map-marker"></span>Cabriolet
+		</a>
 		</div>
 
 	</header>
 
 	<sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
 		url="jdbc:mysql://localhost/Cabriolet1" user="root" password="rajula" />
-
-
+		<!-- url="jdbc:mysql://192.168.3.247:3306/cabriolet" user="srividya"
+		password="srividyaswamy" /> -->
+<%System.out.print("Inside"); %>
 	<sql:query dataSource="${dbsource}" var="result">
             SELECT * from Customer where phoneNumber = <%=session.getAttribute("customerID")%> ;
      </sql:query>

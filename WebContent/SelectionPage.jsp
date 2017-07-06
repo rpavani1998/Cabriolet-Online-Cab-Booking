@@ -22,23 +22,22 @@
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 			<br>
- 			<a href="#"><span class="glyphicon glyphicon-user" style="font-size:30px;color:white;"></span>&ensp; Your Account</a>
+ 			<a href="UserProfile.jsp"><span class="glyphicon glyphicon-user" style="font-size:30px;color:white;"></span>&ensp; Your Account</a>
  			<a></a>
-  		<a href="#"><span class="glyphicon glyphicon-star-empty" style="font-size:30px;color:white;"></span>&ensp; Your Ride</a>
-   		<a></a>
-			<a href="#"><span class="glyphicon glyphicon-credit-card" style="font-size:30px;color:white;"></span>&ensp; Payment</a>
-   		<a></a>
-			<a href="#"><span class="glyphicon glyphicon-list" style="font-size:30px;color:white;"></span>&ensp; Rides History</a>
+
+			<a href="RideHistory.jsp"><span class="glyphicon glyphicon-list" style="font-size:30px;color:white;"></span>&ensp; Rides History</a>
 			<a></a>
-			<a href="#"><span class="glyphicon glyphicon-off" style="font-size:30px;color:white;"></span>&ensp; Log Out</a>
+			<a href="WelcomePage.html"><span class="glyphicon glyphicon-off" style="font-size:30px;color:white;"></span>&ensp; Log Out</a>
 		</div>
 
 		<div id="main">
 			<span style="font-size:40px;cursor:pointer" onclick="openNav()">&#9776;</span>
 		</div>
 
-		<div id="title" style="cursor:pointer" onclick="#"><span class="glyphicon glyphicon-map-marker"></span>Cabriolet</div>
-
+		<div id="title" style="cursor: pointer" onclick="">
+			<a href="SelectionPage.jsp" style="color:white"><span class="glyphicon glyphicon-map-marker"></span>Cabriolet
+		</a>
+		</div>
 	</header>
 	
 	<section class="bgimg">

@@ -42,8 +42,8 @@ public class FriendDetailsController extends HttpServlet {
 		// TODO Auto-generated method stub
 		System.out.println("in FriendDetails");
 		HttpSession session = request.getSession();
-		session.setAttribute("Name",request.getParameter("name1"));
-		session.setAttribute("mobileNumber1",request.getParameter("mobileNumber"));
+		session.setAttribute("F_Name",request.getParameter("name1"));
+		session.setAttribute("F_MobileNumber1",request.getParameter("mobileNumber"));
 		RequestDispatcher rd = request.getRequestDispatcher("HomePage.jsp");
 		rd.forward(request, response);
 		

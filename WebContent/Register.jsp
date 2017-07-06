@@ -36,7 +36,7 @@
 		<span class="glyphicon glyphicon-pencil"></span> Registration
 	</h4>
 	</section> <section class="container-body" style="padding:40px 50px;">
-	<form role="form" action="../CreateUser" method="post">
+	<form role="form" action="CreateUser" method="post">
 		<section class="form-group"> <label for="firstName"><span
 			class="glyphicon glyphicon-user"></span> First Name</label> <input
 			type="text" class="form-control" name="firstName" required=""

@@ -1,8 +1,8 @@
-package com.talentsprint.dbconnection;
+																																																																			package com.talentsprint.dbconnection;
 
 import java.sql.*;
 import java.util.Properties;
-
+																																																																																	
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;

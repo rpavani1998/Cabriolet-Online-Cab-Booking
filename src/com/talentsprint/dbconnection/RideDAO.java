@@ -30,7 +30,7 @@ public class RideDAO {
 			query.setString(7, type);
 			String idOfCustomer = rideBean.getCustomerId();
 			Statement s = connection.createStatement();
-  		    ResultSet rs = s.executeQuery("select firstName from Customer where phoneNumber = '"+idOfCustomer+"' ");
+  		    ResultSet rs = s.executeQuery("select concat(firstName,' ',lastName) from Customer where phoneNumber = '"+idOfCustomer+"' ");
   		    if(rs.next()) {
   		    	CustomerName = rs.getString(1);
   		    	System.out.println(CustomerName);

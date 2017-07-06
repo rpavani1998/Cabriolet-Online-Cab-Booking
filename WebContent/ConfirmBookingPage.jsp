@@ -52,8 +52,9 @@
 			<span style="font-size: 40px; cursor: pointer" onclick="openNav()">&#9776;</span>
 		</div>
 
-		<div id="title" style="cursor: pointer" onclick="HomePage.jsp">
-			<span class="glyphicon glyphicon-map-marker"></span>Cabriolet
+		<div id="title" style="cursor: pointer" onclick="">
+			<a href="SelectionPage.jsp" style="color:white"><span class="glyphicon glyphicon-map-marker"></span>Cabriolet
+		</a>
 		</div>
 		<hr>
 	</header>
@@ -62,8 +63,10 @@
 		<p>Here are your driver's details:</p>
 	</center>
 	<sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://localhost/Cabriolet1" user="root" password="rajula" />
-
+	url="jdbc:mysql://localhost/Cabriolet1" user="root" password="rajula" />
+		<!-- url="jdbc:mysql://192.168.3.247:3306/cabriolet" user="srividya"
+		password="srividyaswamy" /> -->
+<%System.out.print("Inside"); %>
 	<sql:query dataSource="${dbsource}" var="result">
          select d.firstName,d.lastName,d.emailId,d.phoneNumber,d.gender,d.DOB,d.cabNumber from Driver d where phoneNumber = (select driverId from Ride order by bookingTime desc limit 1);
          
@@ -111,6 +114,11 @@
 		<form action="Cancellation.jsp" method="post">
 		    <input type="submit" class="btn btn-default submit" value="Cancel Your Ride" />
 		</form>
-		
+<script>
+	function Redirect() {
+        window.location="http://localhost:8080/Cabriolet-Online-Cab-Booking/CheckStatus2.jsp";
+     }
+	setTimeout('Redirect()', 10000);
+</script>			
 </body>
 </html>

@@ -4,9 +4,33 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<META Http-Equiv="Cache-Control" Content="no-cache">
+<META Http-Equiv="Pragma" Content="no-cache">
+<META Http-Equiv="Expires" Content="0">
 <link rel="stylesheet" type="text/css"
 	href="CSS/ConfirmBookingPage.css">
+	<link rel="stylesheet" type="text/css"
+	href="CSS/WelcomePage.css">
 <title>LogoutPage</title>
+<script type="text/javascript">
+function logout(){
+	window.location.replace("WelcomePage.html");
+	
+}
+setInterval(logout(),0);
+
+function preventBack(){
+	window.history.forword();
+}
+setTimeout("preventBack()",0);
+window.onunload = function(){null};
+
+window.onbeforeload = function(){
+	return "Login!!";
+}
+</script>
+
+
 </head>
 <body>
 	<header>
@@ -19,22 +43,16 @@
 	</div>
 	<hr>
 	</header>
-	<%
-	  response.setHeader("Cache-Control","no-cache");
-	  response.setHeader("Cache-Control","no-store");
-	  response.setHeader("Pragma","no-cache");
-	  response.setDateHeader ("Expires", 0);
-
-	  if(session.getAttribute("customerID")==null)
-	      response.sendRedirect("WelcomePage.html");
-		
-	%>
+	
+	
 	<center>
 		<h>Your session has expired. Click </h>
-		<p><a href='WelcomePage.html'>here</a> to login again.</p>
+		<p>
+		<button type="button" class="btn btn-basic btn-lg" id="myBtn" onclick='logout()'>here</button> to login again.</p>
 	</center>
 	
 	
 	<br>
+	
 </body>
 </html>

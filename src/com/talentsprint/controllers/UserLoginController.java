@@ -12,6 +12,10 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.script.Invocable;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -70,12 +74,24 @@ public class UserLoginController extends HttpServlet {
 				requestDispatcher.forward(request, response);
 
 			} else {
-				out.println("<script type=\"text/javascript\">");
-				out.println("alert('User or password incorrect');");
-				out.println("return false;");
-				out.println("</script>");
+				 ScriptEngineManager manager = new ScriptEngineManager();
+			        ScriptEngine engine = manager.getEngineByName("javaScript");
+			 
+			        String script = "function Alert(){alert('Please enter a subject!'); return false;}";
+			        engine.eval(script);
+			 
+			        Invocable inv = (Invocable) engine;
+			 
+			       inv.invokeFunction("Alert");
+				
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ScriptException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
