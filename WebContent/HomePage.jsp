@@ -29,7 +29,7 @@
 			class="glyphicon glyphicon-user"
 			style="font-size: 30px; color: white;"></span>&ensp; Your Account</a> <a></a>
 		<a href="HomePage.jsp"><span class="glyphicon glyphicon-star-empty"
-			style="font-size: 30px; color: white;"></span>&ensp; Your Ride</a> <a></a>
+			style="font-size: 29px; color: white;"></span>&ensp; Your Ride</a> <a></a>
 		
 			
 			
